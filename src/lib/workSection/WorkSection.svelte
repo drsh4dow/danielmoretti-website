@@ -4,27 +4,26 @@
 	import DanielMorettiLogo from './daniel-moretti-logo.svg';
 	import CaseStudyNewCard from './CaseStudyNewCard.svelte';
 	import { inview } from '$lib/util/inview';
-	import type { Options, ObserverEventDetails } from '$lib/types';
-	let isInView = false;
+	import type { Options } from '$lib/types';
+
+	let isInView = $state(false);
 	const options: Options = {
 		rootMargin: '-80px',
-		unobserveOnEnter: true
+		unobserveOnEnter: true,
+		onChange: ({ inView }) => {
+			isInView = inView;
+		}
 	};
-
-	function handleChange({ detail }: CustomEvent<ObserverEventDetails>) {
-		isInView = detail.inView;
-	}
 </script>
 
-<section id="work-section" class="mb-28  md:mb-40 lg:mb-60">
+<section id="work-section" class="mb-28 md:mb-40 lg:mb-60">
 	<div
 		use:inview={options}
-		on:change={handleChange}
 		class="mb-10 flex items-center justify-end transition-all delay-75 duration-700 sm:mb-14 lg:mb-20
-		 {isInView ? 'translate-x-0 opacity-100 blur-0' : '-translate-x-10 opacity-0 blur-md'}"
+		 {isInView ? 'blur-0 translate-x-0 opacity-100' : '-translate-x-10 opacity-0 blur-md'}"
 	>
-		<div class="h-px w-full bg-sky-500 md:max-w-xs" />
-		<h2 class="whitespace-nowrap pl-6 font-inter text-3xl font-bold sm:text-5xl">
+		<div class="h-px w-full bg-sky-500 md:max-w-xs"></div>
+		<h2 class="font-inter pl-6 text-3xl font-bold whitespace-nowrap sm:text-5xl">
 			Some of My Work
 		</h2>
 	</div>

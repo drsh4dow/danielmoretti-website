@@ -1,10 +1,37 @@
 # Daniel Moretti's Portfolio and Blog
 
-First iteration of Daniel Moretti's Portfolio and Blog
+Personal portfolio and blog built with the current Svelte stack.
 
 ## Tech Stack
 
-SvelteKit + TailwindCSS + Prismic + Vercel = ♥
+Svelte 5 + SvelteKit 2 + Tailwind CSS 4 + Bun + Prismic = ♥
+
+## Development
+
+```bash
+bun install
+bun run dev
+```
+
+## Quality Checks
+
+```bash
+bun run check
+bun run build
+bun run format
+```
+
+## Deployment
+
+This project is configured for Vercel with `@sveltejs/adapter-vercel`.
+
+Vercel settings:
+
+- Framework preset: `SvelteKit`
+- Install command: `bun install`
+- Build command: `bun run build`
+- Output setting: leave on the SvelteKit/Vercel default
+- Node.js version: `22.x`
 
 ## Forking this Repo
 

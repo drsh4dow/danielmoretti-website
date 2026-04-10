@@ -1,13 +1,20 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	export let index: number;
-	export let chipClass = 'bg-indigo-600';
+
+	interface Props {
+		index: number;
+		chipClass?: string;
+		children?: Snippet;
+	}
+
+	let { index, chipClass = 'bg-indigo-600', children }: Props = $props();
 </script>
 
 <div
 	in:fly={{ x: 40, y: -40, delay: 1500 + 200 * index, easing: quintOut, duration: 500 }}
-	class={`inline-flex items-center justify-center rounded ${chipClass} py-1 px-2 shadow sm:py-2 sm:px-4`}
+	class={`inline-flex items-center justify-center rounded ${chipClass} px-2 py-1 shadow sm:px-4 sm:py-2`}
 >
-	<h3 class="text-base font-black sm:text-lg lg:text-lg"><slot /></h3>
+	<h3 class="text-base font-black sm:text-lg lg:text-lg">{@render children?.()}</h3>
 </div>

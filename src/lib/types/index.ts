@@ -1,10 +1,12 @@
-export type Event = 'change' | 'leave' | 'enter' | 'init';
-
 export type Options = {
 	root?: HTMLElement | null;
 	rootMargin?: string;
 	threshold?: number | number[];
 	unobserveOnEnter?: boolean;
+	onChange?: (detail: ObserverEventDetails) => void;
+	onEnter?: (detail: ObserverEventDetails) => void;
+	onLeave?: (detail: ObserverEventDetails) => void;
+	onInit?: (detail: LifecycleEventDetails) => void;
 };
 
 export type Position = {

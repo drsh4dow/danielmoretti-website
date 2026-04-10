@@ -16,14 +16,24 @@ export async function load() {
 	});
 
 	if (rawQuery) {
-		const documents = rawQuery.map((d) => {
+		const documents = rawQuery.flatMap((d) => {
+			const title = d.data.title?.[0]?.text;
+			const introduction = d.data.introduction?.[0]?.text;
+
+			if (!d.uid || !title || !introduction) {
+				return [];
+			}
+
 			const rawDate = d.first_publication_date.split('T')[0].split('-');
-			return {
-				title: d.data.title[0].text,
-				introduction: d.data.introduction[0].text,
-				uid: d.uid,
-				date: `${months[Number(rawDate[1]) - 1]} ${rawDate[2]}, ${rawDate[0]}`
-			};
+
+			return [
+				{
+					title,
+					introduction,
+					uid: d.uid,
+					date: `${months[Number(rawDate[1]) - 1]} ${rawDate[2]}, ${rawDate[0]}`
+				}
+			];
 		});
 		return { documents };
 	}

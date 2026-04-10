@@ -13,8 +13,8 @@
 	mockupSrc="/images/darspa/mockup-darspa.png"
 	mockupAlt="mockup of darspa website"
 	techClass="bg-teal-600"
-  hasLiveVersion
-  liveUrl="https://darspa.cl/"
+	hasLiveVersion
+	liveUrl="https://darspa.cl/"
 	description="This project was a complete implementation of the website for a Healthcare center from the ground up, including design in Figma, development of the components, development of the Server, handling of the custom logic, and handling of the CI pipeline."
 	extraPictures={[
 		{

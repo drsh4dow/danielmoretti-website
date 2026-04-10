@@ -1,37 +1,46 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { activeNumber } from '$lib/stores';
 
-	export let title = '';
-	export let company = '';
-	export let since = '';
-	export let until = '';
-	export let isExpanded = false;
-	export let id = 0;
-	export let keypoints = [''];
-	export let techStack = '';
+	interface Props {
+		title?: string;
+		company?: string;
+		since?: string;
+		until?: string;
+		id?: number;
+		keypoints?: string[];
+		techStack?: string;
+	}
 
-	activeNumber.subscribe((val) => {
-		if (!val || val !== id) {
-			isExpanded = false;
-		} else {
-			isExpanded = true;
-		}
+	let {
+		title = '',
+		company = '',
+		since = '',
+		until = '',
+		id = 0,
+		keypoints = [''],
+		techStack = ''
+	}: Props = $props();
+
+	let isExpanded = $state(false);
+
+	const unsubscribe = activeNumber.subscribe((val) => {
+		isExpanded = val === id;
 	});
 
+	onDestroy(unsubscribe);
+
 	function handleClick() {
-		if (!isExpanded) {
-			activeNumber.set(id);
-		} else {
-			activeNumber.set(null);
-		}
+		activeNumber.set(isExpanded ? null : id);
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-	on:click={handleClick}
-	class="mx-auto mb-2 flex max-w-2xl cursor-pointer items-center justify-between rounded-lg bg-sky-600 px-2 py-4 sm:px-6"
+<button
+	type="button"
+	onclick={handleClick}
+	aria-expanded={isExpanded}
+	class="mx-auto mb-2 flex w-full max-w-2xl cursor-pointer items-center justify-between rounded-lg bg-sky-600 px-2 py-4 text-left sm:px-6"
 >
 	<div class="flex items-center justify-start">
 		<svg
@@ -40,9 +49,8 @@
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<rect
-				class="custom-rotation-object transition-transform ease-in-out {isExpanded
-					? 'rotate-90'
-					: 'rotate-0'}"
+				class="custom-rotation-object transition-transform ease-in-out"
+				class:rotate-90={isExpanded}
 				x="38"
 				y="0"
 				ry="15"
@@ -52,15 +60,15 @@
 			/>
 			<rect x="0" y="37" ry="10" rx="15" width="100" height="25" />
 		</svg>
-		<h3 class="whitespace-nowrap text-lg font-bold sm:text-xl ">{title} {company}</h3>
+		<h3 class="text-lg font-bold whitespace-nowrap sm:text-xl">{title} {company}</h3>
 	</div>
-	<h3 class="hidden whitespace-nowrap text-xl font-bold sm:inline sm:text-xl">{since} - {until}</h3>
-</div>
+	<h3 class="hidden text-xl font-bold whitespace-nowrap sm:inline sm:text-xl">{since} - {until}</h3>
+</button>
 
 {#if isExpanded}
 	<div
 		transition:slide
-		class="mx-auto mb-2 max-w-2xl rounded-lg border border-sky-500 py-4 px-4 sm:px-8"
+		class="mx-auto mb-2 max-w-2xl rounded-lg border border-sky-500 px-4 py-4 sm:px-8"
 	>
 		<ul class="mb-4 list-outside text-base font-bold sm:text-lg md:text-xl">
 			{#each keypoints as point}

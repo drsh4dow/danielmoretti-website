@@ -1,32 +1,34 @@
 <script lang="ts">
-	export let title: string;
-	export let date: string;
-  export let introduction: string;
-  export let url: string;
+	interface Props {
+		title: string;
+		date: string;
+		introduction: string;
+		url: string;
+	}
+
+	let { title, date, introduction, url }: Props = $props();
 </script>
 
 <article class="md:grid md:grid-cols-4 md:items-baseline">
 	<div class="group relative flex flex-col items-start md:col-span-3">
-		<h2 class="text-base font-semibold tracking-tight text-sky-400 ">
-			<div
-				class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-slate-800 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
-			/>
-			<div class="inline">
-				<a href={`/blog/${url}`} data-sveltekit-preload-data>
-					<span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-					<span class="relative z-10">{title}</span>
-				</a>
-			</div>
+		<div
+			class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-slate-800 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
+		></div>
+		<h2 class="text-base font-semibold tracking-tight text-sky-400">
+			<a href={`/blog/${url}`} data-sveltekit-preload-data>
+				<span class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+				<span class="relative z-10">{title}</span>
+			</a>
 		</h2>
 		<time
 			class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-slate-200 md:hidden"
 		>
 			<span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
-				<span class="h-4 w-0.5 rounded-full bg-sky-500 " />
+				<span class="h-4 w-0.5 rounded-full bg-sky-500"></span>
 			</span>
 			{date}
 		</time>
-		<p class="relative z-10 mt-2 text-sm text-slate-200 ">{introduction}</p>
+		<p class="relative z-10 mt-2 text-sm text-slate-200">{introduction}</p>
 		<div
 			aria-hidden="true"
 			class="relative z-10 mt-4 flex items-center text-sm font-medium text-sky-500"
