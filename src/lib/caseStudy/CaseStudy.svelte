@@ -77,7 +77,7 @@
 	></div>
 	<div class="flex w-full py-10">
 		<a
-			in:blur={{ amount: 10 }}
+			in:blur={{ amount: 10, duration: 400 }}
 			href="/#work-section"
 			aria-label="Back to work section"
 			data-sveltekit-preload-data
@@ -97,29 +97,37 @@
 	</div>
 	<div class="mb-10 grid sm:mb-20 lg:grid-cols-2">
 		<div class="lg:pt-4">
-			<h3 in:blur={{ amount: 10, delay: 300 }} class="text-2xl font-black sm:mb-1">
+			<h3 in:blur={{ amount: 10, delay: 0, duration: 400 }} class="text-2xl font-black sm:mb-1">
 				{appType.join(' ')}
 			</h3>
 			<h1
-				in:blur={{ amount: 10, delay: 900 }}
+				in:blur={{ amount: 10, delay: 100, duration: 400 }}
 				class={`font-inter text-7xl font-bold sm:text-8xl ${hasLiveVersion ? 'mb-6 lg:mb-10' : ''}`}
 			>
 				{title}
 			</h1>
 			{#if hasLiveVersion}
-				<a in:blur={{ amount: 10, delay: 1200 }} href={liveUrl} rel="noreferrer" target="_blank">
+				<a
+					in:blur={{ amount: 10, delay: 200, duration: 400 }}
+					href={liveUrl}
+					rel="noreferrer"
+					target="_blank"
+				>
 					<Button>View Live</Button>
 				</a>
 			{/if}
 		</div>
 		<img
-			in:blur={{ amount: 10, delay: 1200 }}
+			in:blur={{ amount: 10, delay: 200, duration: 400 }}
 			class="hidden lg:inline"
 			src={mockupSrc}
 			alt={mockupAlt}
 		/>
 	</div>
-	<div in:blur={{ amount: 10, delay: 1200 }} class="grid gap-5 sm:gap-10 lg:grid-cols-2">
+	<div
+		in:blur={{ amount: 10, delay: 300, duration: 400 }}
+		class="grid gap-5 sm:gap-10 lg:grid-cols-2"
+	>
 		<div>
 			<h5 class="mb-2 text-2xl font-black sm:mb-6">Project Overview</h5>
 			<p class="max-w-lg text-lg text-slate-200">
@@ -136,15 +144,15 @@
 		</div>
 	</div>
 </section>
-<section in:blur={{ amount: 10, delay: 1500 }} class="mb-10 flex flex-wrap gap-10">
+<section in:blur={{ amount: 10, delay: 400, duration: 400 }} class="mb-10 flex flex-wrap gap-10">
 	{#each extraPictures as { header, src, alt }}
 		<div>
 			<h5 class="mb-2 text-xl font-bold">{@html header}</h5>
-			<img class="rounded-lg shadow" {src} {alt} />
+			<img class="rounded-lg shadow" {src} {alt} loading="lazy" decoding="async" />
 		</div>
 	{/each}
 </section>
 
-<h5 class="text-center text-xs font-black text-slate-200/20 sm:text-lg">
+<h5 class="text-center text-xs font-black text-slate-200/60 sm:text-lg">
 	Designed with <span class="text-red-500">&#10084;</span> and Coded with fun by Daniel Moretti
 </h5>

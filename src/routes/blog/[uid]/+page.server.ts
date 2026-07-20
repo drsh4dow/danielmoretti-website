@@ -1,16 +1,15 @@
 import { error } from '@sveltejs/kit';
-import * as prismic from '@prismicio/client';
+import { getAllPostsMeta, getPost } from '$lib/server/blog';
+import type { EntryGenerator, PageServerLoad } from './$types';
+
 export const prerender = true;
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
-	const { uid } = params;
-	const client = prismic.createClient('danielmoretti-blog');
-	const document = await client.getByUID('blog-post', uid);
+export const entries: EntryGenerator = () => getAllPostsMeta().map(({ uid }) => ({ uid }));
 
-	if (document) {
-		return { document };
-	}
+export const load: PageServerLoad = async ({ params }) => {
+	const post = await getPost(params.uid);
 
-	error(404, 'Not found');
-}
+	if (!post) error(404, 'Post not found');
+
+	return { post };
+};

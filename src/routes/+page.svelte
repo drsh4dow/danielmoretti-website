@@ -7,11 +7,18 @@
 </script>
 
 <svelte:head>
-	<title>Daniel Moretti's Portfolio</title>
+	<title>Daniel Moretti — Co-Founder & CTO at Mappa</title>
 	<meta
 		name="description"
-		content="Daniel Moretti’s Portfolio showcases most of the work I have been doing and my career experience; it is powered by SvelteKit and TailwindCSS."
+		content="Daniel Moretti is Co-Founder & CTO of Mappa, building AI voice agents and production systems in Rust, TypeScript, and Python. Portfolio, experience, and writing."
 	/>
+	<meta property="og:title" content="Daniel Moretti — Co-Founder & CTO at Mappa" />
+	<meta
+		property="og:description"
+		content="Daniel Moretti is Co-Founder & CTO of Mappa, building AI voice agents and production systems in Rust, TypeScript, and Python. Portfolio, experience, and writing."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://danielmoretti.com" />
 	<link rel="canonical" href="https://danielmoretti.com" />
 </svelte:head>
 

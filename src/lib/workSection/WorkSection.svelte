@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import BelenLogo from './belen-logo.svg';
 	import DarSpaLogo from './darspa-logo.svg';
 	import DanielMorettiLogo from './daniel-moretti-logo.svg';
@@ -6,7 +7,12 @@
 	import { inview } from '$lib/util/inview';
 	import type { Options } from '$lib/types';
 
+	let mounted = $state(false);
 	let isInView = $state(false);
+
+	onMount(() => {
+		mounted = true;
+	});
 	const options: Options = {
 		rootMargin: '-80px',
 		unobserveOnEnter: true,
@@ -19,8 +25,8 @@
 <section id="work-section" class="mb-28 md:mb-40 lg:mb-60">
 	<div
 		use:inview={options}
-		class="mb-10 flex items-center justify-end transition-all delay-75 duration-700 sm:mb-14 lg:mb-20
-		 {isInView ? 'blur-0 translate-x-0 opacity-100' : '-translate-x-10 opacity-0 blur-md'}"
+		class="mb-10 flex items-center justify-end transition-[opacity,transform] delay-75 duration-500 ease-out sm:mb-14 lg:mb-20
+		 {mounted && !isInView ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}"
 	>
 		<div class="h-px w-full bg-sky-500 md:max-w-xs"></div>
 		<h2 class="font-inter pl-6 text-3xl font-bold whitespace-nowrap sm:text-5xl">
@@ -41,18 +47,13 @@
 		/>
 		<CaseStudyNewCard
 			appName="Odontología Chacón"
-			appType="Website"
+			appType="Website · 2021"
 			cardDirection="Right"
 			srcLogo={BelenLogo}
 			srcBg="/images/odontologiachacon/odontologiachacon.png"
 			altBg="Landing page from odontologiabelenchacon.cl"
 			altLogo="Odontologia belen chacon Logo"
 			classColor="bg-indigo-500/90"
-			href="https://odontologiabelenchacon.cl"
-			buttonText="View Live"
-			isExternal
-			rel="noreferrer"
-			target="_blank"
 		/>
 		<CaseStudyNewCard
 			appName="Dar Spa"
@@ -74,7 +75,7 @@
 			altBg="Medical Administrator Dashboard from odontoficha"
 			altLogo="Daniel Moretti Logo"
 			classColor="bg-indigo-500/90"
-			href="https://github.com/DrSh4dow/odontoficha-qt"
+			href="https://github.com/drsh4dow/odontoficha-qt"
 			buttonText="View Repo"
 			isExternal
 			rel="noreferrer"

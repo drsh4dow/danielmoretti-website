@@ -1,14 +1,19 @@
 <script lang="ts">
-	import * as prismicH from '@prismicio/helpers';
-	import type { PageData } from './$types';
 	import { leftArrowData } from '$lib/util/constants';
+	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
-	<title>{data.document.data.title[0].text} | Daniel Moretti's Blog</title>
-	<meta name="description" content={data.document.data.introduction[0].text} />
+	<title>{data.post.title} | Daniel Moretti's Blog</title>
+	<meta name="description" content={data.post.description} />
+	<link rel="canonical" href={`https://danielmoretti.com/blog/${data.post.uid}`} />
+	<meta property="og:title" content={data.post.title} />
+	<meta property="og:description" content={data.post.description} />
+	{#if data.post.banner}
+		<meta property="og:image" content={`https://danielmoretti.com${data.post.banner}`} />
+	{/if}
 </svelte:head>
 
 <article class="mb-20 max-w-screen-md pt-16 sm:pt-20">
@@ -27,26 +32,35 @@
 			</svg>
 		</a>
 	</div>
-	<h1 class="font-inter mb-4 text-left text-3xl font-bold sm:text-4xl md:mb-8 md:text-5xl">
-		{data.document.data.title[0].text}
+	<h1 class="font-inter mb-4 text-left text-3xl font-bold sm:text-4xl md:text-5xl">
+		{data.post.title}
 	</h1>
-	<h5 class="mb-10 text-lg font-bold text-slate-300 sm:text-xl">
-		{data.document.data.introduction[0].text}
-	</h5>
-	<div class="mb-20 max-w-2xl overflow-hidden rounded-xl shadow">
-		<img
-			class="h-auto w-full object-contain"
-			src={data.document.data.bannerpic.url}
-			alt={data.document.data.bannerpic.alt}
-		/>
-		<p class="text-sm text-slate-500 [&>a]:underline">
-			{@html data.document.data.bannerpic.copyright}
-		</p>
-	</div>
+	<p class="mb-4 text-lg font-bold text-slate-300 sm:text-xl">
+		{data.post.description}
+	</p>
+	<time class="mb-10 block text-sm text-sky-400" datetime={data.post.date}>
+		{data.post.displayDate}
+	</time>
+	{#if data.post.banner}
+		<div class="mb-20 max-w-2xl overflow-hidden rounded-xl shadow">
+			<img
+				class="h-auto w-full object-contain"
+				src={data.post.banner}
+				alt={data.post.bannerAlt ?? data.post.title}
+				width="1200"
+				height="630"
+			/>
+			{#if data.post.bannerCredit}
+				<p class="px-1 py-2 text-sm text-slate-500 [&_a]:text-sky-400 [&_a]:underline">
+					{@html data.post.bannerCredit}
+				</p>
+			{/if}
+		</div>
+	{/if}
 	<div
-		class="[&>*]:text-lg [&>*]:text-slate-200 [&>h1]:mb-2 [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:text-slate-50 [&>h2]:mb-2 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-slate-50 [&>h3]:mb-2 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-slate-50 [&>h6]:px-1 [&>h6]:text-sm [&>h6]:text-slate-400 [&>h6]:italic [&>p]:mb-16 [&>pre]:-mt-10 [&>pre]:mb-6 [&>pre]:overflow-x-scroll [&>pre]:rounded-xl [&>pre]:bg-black [&>pre]:p-4 [&>pre]:text-base [&>pre]:text-green-500 [&>ul]:-mt-10 [&>ul]:mb-6 [&>ul]:list-disc [&>ul]:px-8"
+		class="[&>h1]:font-inter [&>h2]:font-inter [&>h3]:font-inter [&_:not(pre)>code]:rounded [&_:not(pre)>code]:bg-slate-800 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:text-[0.9em] [&_:not(pre)>code]:text-sky-300 [&_a]:text-sky-400 [&_a]:underline [&_a]:underline-offset-4 [&_li>p]:mb-2 [&>*]:text-base [&>*]:text-slate-200 sm:[&>*]:text-lg [&>blockquote]:mb-6 [&>blockquote]:border-l-2 [&>blockquote]:border-sky-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote>p]:mb-0 [&>h1]:mt-12 [&>h1]:mb-4 [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:text-slate-50 [&>h2]:mt-12 [&>h2]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-slate-50 [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-slate-50 [&>ol]:mb-6 [&>ol]:list-decimal [&>ol]:space-y-2 [&>ol]:pl-8 [&>p]:mb-6 [&>p]:leading-8 [&>pre]:mb-6 [&>pre]:overflow-x-auto [&>pre]:rounded-xl [&>pre]:p-4 [&>pre]:text-sm sm:[&>pre]:text-base [&>ul]:mb-6 [&>ul]:list-disc [&>ul]:space-y-2 [&>ul]:pl-8"
 	>
-		{@html prismicH.asHTML(data.document.data.body)}
+		{@html data.post.html}
 	</div>
 </article>
 <h5 class="text-center text-xs font-black text-slate-200/20 sm:text-lg">

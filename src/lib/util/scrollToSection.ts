@@ -2,11 +2,7 @@ export function scrollToSection(sectionId: string) {
 	const elem = document.querySelector(sectionId);
 	if (!elem) return;
 
-	const elemPosition = elem.getBoundingClientRect().top;
-	const offSetPosition = elemPosition + window.pageYOffset - 240;
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	window.scrollTo({
-		top: offSetPosition,
-		behavior: 'smooth'
-	});
+	elem.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
 }

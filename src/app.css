@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Nunito:wght@400;700;900&display=swap');
-
 @import 'tailwindcss';
 
 @theme {
@@ -19,6 +17,7 @@
 
 @layer base {
 	html {
+		scroll-behavior: smooth;
 		font-family:
 			'Nunito',
 			ui-sans-serif,
@@ -35,5 +34,17 @@
 			'Segoe UI Emoji',
 			'Segoe UI Symbol',
 			'Noto Color Emoji';
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		transition-delay: 0s !important;
+		scroll-behavior: auto !important;
 	}
 }

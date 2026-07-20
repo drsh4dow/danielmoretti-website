@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import Button from '$lib/button/Button.svelte';
 	import { inview } from '$lib/util/inview';
 	import type { Options } from '$lib/types';
@@ -19,6 +20,7 @@
 		buttonText?: string;
 	}
 
+	let mounted = $state(false);
 	let isInView = $state(false);
 	const options: Options = {
 		rootMargin: '-80px',
@@ -37,86 +39,105 @@
 		appName,
 		cardDirection,
 		classColor,
-		href = '.',
+		href,
 		isExternal = false,
-		rel = '',
-		target = '',
+		rel,
+		target,
 		buttonText = 'Case Study'
 	}: Props = $props();
+
+	onMount(() => {
+		mounted = true;
+	});
 </script>
+
+{#snippet cardImage()}
+	<div
+		class="absolute top-0 left-0 flex h-full w-full items-center justify-center transition-colors duration-300 ease-out group-focus-visible:bg-slate-500/10 group-[:hover]:bg-slate-500/10 {classColor}"
+	>
+		<img
+			class="opacity-100 transition-[opacity,transform,filter] duration-300 ease-out group-focus-visible:scale-110 group-focus-visible:opacity-0 group-focus-visible:blur-sm group-[:hover]:scale-110 group-[:hover]:opacity-0 group-[:hover]:blur-sm"
+			src={srcLogo}
+			alt={altLogo}
+		/>
+	</div>
+	<img src={srcBg} alt={altBg} width="508" height="312" loading="lazy" decoding="async" />
+{/snippet}
 
 <article
 	use:inview={options}
-	class="flex max-w-5xl transition-all delay-75 duration-700
-    {isInView ? 'blur-0 translate-y-0 opacity-100' : '-translate-y-1 opacity-0 blur-md'}"
+	class="flex max-w-5xl transition-[opacity,transform] delay-75 duration-500 ease-out
+		{mounted && !isInView ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}"
 >
 	{#if cardDirection === 'Left'}
-		<a
-			{href}
-			rel={rel || undefined}
-			target={target || undefined}
-			data-sveltekit-preload-data={isExternal ? 'off' : undefined}
-			class="group relative block max-h-60 cursor-pointer overflow-hidden rounded-2xl shadow-md sm:max-h-[360px]"
-		>
-			<div
-				class="absolute top-0 left-0 flex h-full w-full items-center justify-center transition-all duration-700 group-hover:bg-slate-500/10 {classColor}"
+		{#if href}
+			<a
+				{href}
+				{rel}
+				{target}
+				data-sveltekit-preload-data={isExternal ? 'off' : undefined}
+				class="group relative block max-h-60 cursor-pointer overflow-hidden rounded-2xl shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 sm:max-h-[360px]"
 			>
-				<img
-					class="blur-0 opacity-100 transition-all duration-500 group-hover:scale-125 group-hover:opacity-0 group-hover:blur-lg"
-					src={srcLogo}
-					alt={altLogo}
-				/>
+				{@render cardImage()}
+			</a>
+		{:else}
+			<div
+				class="group relative block max-h-60 overflow-hidden rounded-2xl shadow-md sm:max-h-[360px]"
+			>
+				{@render cardImage()}
 			</div>
-			<img src={srcBg} alt={altBg} />
-		</a>
+		{/if}
 		<div class="hidden w-[520px] p-10 lg:block">
 			<h4 class="text-2xl font-black">{appType}</h4>
 			<h2 class="font-inter mb-4 text-4xl font-bold">{appName}</h2>
 			<h3 class="mb-10 text-2xl font-black text-slate-200">Design & Development</h3>
-			<div class="flex items-center justify-start">
-				<a
-					{href}
-					rel={rel || undefined}
-					target={target || undefined}
-					data-sveltekit-preload-data={isExternal ? 'off' : undefined}
-				>
-					<Button>{buttonText}</Button>
-				</a>
-			</div>
+			{#if href}
+				<div class="flex items-center justify-start">
+					<a
+						{href}
+						{rel}
+						{target}
+						data-sveltekit-preload-data={isExternal ? 'off' : undefined}
+						class="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+					>
+						<Button>{buttonText}</Button>
+					</a>
+				</div>
+			{/if}
 		</div>
 	{:else}
 		<div class="hidden w-[520px] p-10 lg:block">
 			<h4 class="text-right text-2xl font-black">{appType}</h4>
 			<h2 class="font-inter mb-4 text-right text-4xl font-bold">{appName}</h2>
 			<h3 class="mb-10 text-right text-2xl font-black text-slate-200">Design & Development</h3>
-			<div class="flex items-center justify-end">
-				<a
-					{href}
-					rel={rel || undefined}
-					target={target || undefined}
-					data-sveltekit-preload-data={isExternal ? 'off' : undefined}
-				>
-					<Button>{buttonText}</Button>
-				</a>
-			</div>
+			{#if href}
+				<div class="flex items-center justify-end">
+					<a
+						{href}
+						{rel}
+						{target}
+						data-sveltekit-preload-data={isExternal ? 'off' : undefined}
+						class="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+					>
+						<Button>{buttonText}</Button>
+					</a>
+				</div>
+			{/if}
 		</div>
-		<a
-			{href}
-			rel={rel || undefined}
-			target={target || undefined}
-			data-sveltekit-preload-data={isExternal ? 'off' : undefined}
-			class="group relative block max-h-[360px] cursor-pointer overflow-hidden rounded-2xl shadow-md"
-		>
-			<div
-				class="absolute top-0 left-0 flex h-full w-full items-center justify-center transition-all duration-700 group-hover:bg-slate-500/10 {classColor}"
+		{#if href}
+			<a
+				{href}
+				{rel}
+				{target}
+				data-sveltekit-preload-data={isExternal ? 'off' : undefined}
+				class="group relative block max-h-[360px] cursor-pointer overflow-hidden rounded-2xl shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
 			>
-				<img
-					class="blur-0 opacity-100 transition-all duration-500 group-hover:opacity-0 group-hover:blur-lg"
-					src={srcLogo}
-					alt={altLogo}
-				/>
+				{@render cardImage()}
+			</a>
+		{:else}
+			<div class="group relative block max-h-[360px] overflow-hidden rounded-2xl shadow-md">
+				{@render cardImage()}
 			</div>
-			<img src={srcBg} alt={altBg} />
-		</a>
+		{/if}
 	{/if}
 </article>

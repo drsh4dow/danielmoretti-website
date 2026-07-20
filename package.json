@@ -17,28 +17,29 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/kit": "^2.57.1",
-		"@sveltejs/adapter-vercel": "^6.3.3",
-		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"@tailwindcss/vite": "^4.2.2",
-		"prettier": "^3.8.1",
-		"prettier-plugin-svelte": "^3.5.1",
-		"prettier-plugin-tailwindcss": "^0.7.2",
-		"svelte": "^5.55.2",
-		"svelte-check": "^4.4.6",
-		"tailwindcss": "^4.2.2",
-		"typescript": "^6.0.2",
-		"vite": "^8.0.8"
+		"@sveltejs/adapter-vercel": "^6.3.4",
+		"@sveltejs/kit": "^2.70.1",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"prettier": "^3.9.5",
+		"prettier-plugin-svelte": "^4.1.1",
+		"prettier-plugin-tailwindcss": "^0.8.1",
+		"svelte": "^5.56.7",
+		"svelte-check": "^4.7.3",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
+		"vite": "^8.1.5"
 	},
 	"type": "module",
 	"dependencies": {
-		"@prismicio/client": "^7.21.8",
-		"@prismicio/helpers": "^2.3.9"
+		"marked": "^18.0.6",
+		"marked-highlight": "^2.2.4",
+		"shiki": "^4.3.1"
 	}
 }

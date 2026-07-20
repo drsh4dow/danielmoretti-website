@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://danielmoretti.com/sitemap.xml

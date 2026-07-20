@@ -8,17 +8,19 @@
 	import { inview } from '$lib/util/inview';
 	import type { Options } from '$lib/types';
 
+	let mounted = $state(false);
 	let isInView = $state(false);
+	let prefersReducedMotion = $state(false);
+
 	const options: Options = {
 		rootMargin: '-80px',
-		unobserveOnEnter: true,
+		unobserveOnEnter: false,
 		onChange: ({ inView }) => {
 			isInView = inView;
 		}
 	};
 
-	// Animation and behavior functions
-	const cy = tweened(0, {
+	const cy = tweened(20, {
 		duration: (from, to) => Math.abs(to - from) * 60,
 		easing: sineInOut
 	});
@@ -29,29 +31,53 @@
 	});
 
 	onMount(() => {
+		const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const updateReducedMotionPreference = () => {
+			prefersReducedMotion = reducedMotionQuery.matches;
+		};
+
+		updateReducedMotionPreference();
+		reducedMotionQuery.addEventListener('change', updateReducedMotionPreference);
+		mounted = true;
+
+		return () => {
+			reducedMotionQuery.removeEventListener('change', updateReducedMotionPreference);
+		};
+	});
+
+	$effect(() => {
+		if (!mounted || !isInView || prefersReducedMotion) {
+			void cy.set(20, { duration: 0 });
+			return;
+		}
+
 		let isActive = true;
 
 		void (async () => {
 			while (isActive) {
-				await cy.set(20);
-				if (!isActive) break;
 				await cy.set(66);
+				if (!isActive) break;
+				await cy.set(20);
 			}
 		})();
 
 		return () => {
 			isActive = false;
+			void cy.set(20, { duration: 0 });
 		};
 	});
 
 	$effect(() => {
-		if (!isInView) return;
+		if (!mounted || !isInView) return;
 
 		const timeout = setTimeout(() => {
 			void radius.set(5.5);
 		}, 1300);
 
-		return () => clearTimeout(timeout);
+		return () => {
+			clearTimeout(timeout);
+			void radius.set(0, { duration: 0 });
+		};
 	});
 </script>
 
@@ -64,8 +90,8 @@
 			class="bg-gradient-radial absolute -top-96 left-0 -z-20 hidden h-[800px] w-96 -rotate-[30deg] rounded-full lg:inline"
 		></div>
 		<div
-			class="absolute top-0 right-0 hidden transition-all delay-700 duration-700 lg:block
-	   		{isInView ? 'blur-0 translate-x-0 opacity-100' : '-translate-x-10 opacity-0 blur-md'}"
+			class="absolute top-0 right-0 hidden transition-[opacity,transform] delay-200 duration-500 ease-out lg:block
+			{mounted && !isInView ? '-translate-x-2.5 opacity-0' : 'translate-x-0 opacity-100'}"
 		>
 			<div class="w-64 border-t border-sky-500"></div>
 			<div class="h-60 border-r border-sky-500"></div>
@@ -78,11 +104,11 @@
 					Daniel Moretti
 				</h1>
 				<h4
-					class="mb-6 text-left text-base font-bold text-slate-200/75 transition-all duration-700 sm:text-xl md:mb-20 md:text-2xl lg:mb-24 lg:text-right lg:text-3xl
-					{isInView ? 'blur-0 translate-x-0 opacity-100' : 'translate-x-10 opacity-0 blur-md'}"
+					class="mb-6 text-left text-base font-bold text-slate-200/75 transition-[opacity,transform] duration-500 ease-out sm:text-xl md:mb-20 md:text-2xl lg:mb-24 lg:text-right lg:text-3xl
+					{mounted && !isInView ? 'translate-x-2.5 opacity-0' : 'translate-x-0 opacity-100'}"
 				>
-					"Building <span class="text-sky-400/75">Experiences</span> is much more <br />
-					&nbsp; than building <span class="text-sky-400/75">Applications</span>."
+					Co-Founder & CTO at <span class="text-sky-400/75">Mappa</span><br />
+					Rust · TypeScript · AI Agents & <span class="text-sky-400/75">Voice Systems</span>
 				</h4>
 			</div>
 		</div>
@@ -105,7 +131,7 @@
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
-					{#if isInView}
+					{#if !mounted || isInView}
 						<rect
 							in:draw={{ duration: 1500, delay: 500, easing: quintOut }}
 							x="0.5"
@@ -121,8 +147,8 @@
 			</button>
 		</div>
 		<div
-			class="absolute bottom-0 left-0 hidden transition-all delay-500 duration-700 lg:block
-	   		{isInView ? 'blur-0 translate-x-0 opacity-100' : 'translate-x-10 opacity-0 blur-md'}"
+			class="absolute bottom-0 left-0 hidden transition-[opacity,transform] delay-200 duration-500 ease-out lg:block
+			{mounted && !isInView ? 'translate-x-2.5 opacity-0' : 'translate-x-0 opacity-100'}"
 		>
 			<div class="h-60 border-l border-sky-500"></div>
 			<div class="w-64 border-b border-sky-500"></div>

@@ -1,56 +1,42 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import { activeNumber } from '$lib/stores';
 
 	interface Props {
-		title?: string;
-		company?: string;
-		since?: string;
-		until?: string;
-		id?: number;
-		keypoints?: string[];
-		techStack?: string;
+		title: string;
+		company: string;
+		since: string;
+		until: string;
+		id: number;
+		keypoints: string[];
+		techStack: string;
+		expanded: boolean;
+		ontoggle: () => void;
 	}
 
-	let {
-		title = '',
-		company = '',
-		since = '',
-		until = '',
-		id = 0,
-		keypoints = [''],
-		techStack = ''
-	}: Props = $props();
+	let { title, company, since, until, id, keypoints, techStack, expanded, ontoggle }: Props =
+		$props();
 
-	let isExpanded = $state(false);
-
-	const unsubscribe = activeNumber.subscribe((val) => {
-		isExpanded = val === id;
-	});
-
-	onDestroy(unsubscribe);
-
-	function handleClick() {
-		activeNumber.set(isExpanded ? null : id);
-	}
+	let triggerId = $derived(`work-slot-trigger-${id}`);
+	let panelId = $derived(`work-slot-panel-${id}`);
 </script>
 
 <button
+	id={triggerId}
 	type="button"
-	onclick={handleClick}
-	aria-expanded={isExpanded}
-	class="mx-auto mb-2 flex w-full max-w-2xl cursor-pointer items-center justify-between rounded-lg bg-sky-600 px-2 py-4 text-left sm:px-6"
+	onclick={ontoggle}
+	aria-expanded={expanded}
+	aria-controls={panelId}
+	class="mx-auto mb-2 flex w-full max-w-2xl cursor-pointer items-center justify-between rounded-lg bg-sky-700 px-2 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 sm:px-6"
 >
-	<div class="flex items-center justify-start">
+	<span class="flex min-w-0 items-center justify-start">
 		<svg
-			class=" mr-2 h-3 fill-slate-50 antialiased"
+			class="mr-2 h-3 shrink-0 fill-slate-50 antialiased"
 			viewBox="0 0 100 100"
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<rect
-				class="custom-rotation-object transition-transform ease-in-out"
-				class:rotate-90={isExpanded}
+				class="custom-rotation-object transition-transform duration-[250ms] ease-out"
+				class:rotate-90={expanded}
 				x="38"
 				y="0"
 				ry="15"
@@ -60,14 +46,22 @@
 			/>
 			<rect x="0" y="37" ry="10" rx="15" width="100" height="25" />
 		</svg>
-		<h3 class="text-lg font-bold whitespace-nowrap sm:text-xl">{title} {company}</h3>
-	</div>
-	<h3 class="hidden text-xl font-bold whitespace-nowrap sm:inline sm:text-xl">{since} - {until}</h3>
+		<span class="min-w-0">
+			<span class="block text-lg font-bold sm:text-xl">{title} {company}</span>
+			<span class="block text-sm font-bold text-slate-100/80 sm:hidden">{since}–{until}</span>
+		</span>
+	</span>
+	<span class="ml-4 hidden shrink-0 text-xl font-bold whitespace-nowrap sm:inline">
+		{since}–{until}
+	</span>
 </button>
 
-{#if isExpanded}
+{#if expanded}
 	<div
-		transition:slide
+		id={panelId}
+		role="region"
+		aria-labelledby={triggerId}
+		transition:slide={{ duration: 250 }}
 		class="mx-auto mb-2 max-w-2xl rounded-lg border border-sky-500 px-4 py-4 sm:px-8"
 	>
 		<ul class="mb-4 list-outside text-base font-bold sm:text-lg md:text-xl">

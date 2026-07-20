@@ -7,7 +7,10 @@
 
 <svelte:head>
 	<title>Daniel Moretti's Blog</title>
-	<meta name="description" content="" />
+	<meta
+		name="description"
+		content="Daniel Moretti's blog about software engineering, TypeScript, Rust, AI agents, Linux, and developer tooling."
+	/>
 	<link rel="canonical" href="https://danielmoretti.com/blog" />
 </svelte:head>
 
@@ -18,8 +21,16 @@
 </h1>
 <div class="md:border-l md:border-sky-500 md:pl-6">
 	<div class="flex max-w-3xl flex-col gap-16">
-		{#each data.documents as d (d.uid)}
-			<BlogPostCard introduction={d.introduction} url={d.uid} date={d.date} title={d.title} />
+		{#each data.posts as post (post.uid)}
+			<BlogPostCard
+				title={post.title}
+				description={post.description}
+				date={post.date}
+				displayDate={post.displayDate}
+				uid={post.uid}
+			/>
+		{:else}
+			<p class="text-slate-300">No posts published yet.</p>
 		{/each}
 	</div>
 </div>

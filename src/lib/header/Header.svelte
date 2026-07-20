@@ -6,46 +6,29 @@
 	<div
 		class="mx-auto flex h-full max-w-screen-xl items-center justify-between px-2 sm:px-4 md:px-6"
 	>
-		<a href="/" class="flex items-center justify-start gap-2">
-			<img src={Logo} alt="Logo Daniel Moretti" />
-			<h3 class="text-xl font-black select-none">Daniel Moretti</h3>
+		<a
+			href="/"
+			class="flex items-center justify-start gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+		>
+			<img src={Logo} alt="" />
+			<span class="text-xl font-black select-none">Daniel Moretti</span>
 		</a>
 		<nav class="flex items-center">
-			<!-- <svg
-				class="cursor-pointer md:hidden"
-				on:click={() => (isOpen = true)}
-				width="32"
-				height="32"
-				viewBox="0 0 32 32"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					d="M4 8H28V10.6667H4V8ZM4 14.6667H28V17.3333H4V14.6667ZM4 21.3333H28V24H4V21.3333Z"
-					fill="#E2E8F0"
-					fill-opacity="0.75"
-				/>
-			</svg> -->
 			<a
-				class="hidden text-xl font-bold text-slate-200/90 hover:text-slate-200 md:inline"
+				class="hidden text-xl font-bold text-slate-200/90 hover:text-slate-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 md:inline"
 				href="/"
 				data-sveltekit-preload-data>Portfolio</a
 			>
 			<a
-				class="ml-8 hidden text-xl font-bold text-slate-200/90 hover:text-slate-200 md:inline"
+				class="ml-4 text-lg font-bold text-slate-200/90 hover:text-slate-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 md:ml-8 md:text-xl"
 				href="/blog"
 				data-sveltekit-preload-data>Blog</a
 			>
-			<!-- <a
-				class="hidden text-xl font-bold text-slate-200/90 hover:text-slate-200 md:inline"
-				href="/contact"
-				data-sveltekit-preload-data>Contact</a
-			> -->
 			<div class="mx-6 hidden h-8 border border-slate-200/5 sm:inline md:mx-8"></div>
 			<a
 				href="mailto:daniel.morettiv@gmail.com"
 				aria-label="Send Daniel an email"
-				class="group inline cursor-pointer"
+				class="group inline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
 			>
 				<svg
 					width="32"
@@ -64,7 +47,7 @@
 				href="https://www.linkedin.com/in/dmorettiv"
 				target="_blank"
 				aria-label="Visit Daniel's LinkedIn profile"
-				class="group mx-2 inline cursor-pointer md:mx-4"
+				class="group mx-2 inline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 md:mx-4"
 				rel="noreferrer"
 			>
 				<svg
@@ -81,8 +64,8 @@
 				</svg>
 			</a>
 			<a
-				class="group inline cursor-pointer"
-				href="https://github.com/DrSh4dow"
+				class="group inline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+				href="https://github.com/drsh4dow"
 				target="_blank"
 				aria-label="Visit Daniel's GitHub profile"
 				rel="noreferrer"
