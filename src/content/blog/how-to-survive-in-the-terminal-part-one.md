@@ -14,7 +14,7 @@ How often have you resourced to copy and paste coding snippets without realizing
 
 ## Getting Started
 
-First and foremost, open your terminal; on most Linux distros, this can be achieved with Ctrl+Alt+Tor Super+T (I'm looking at you, Pop!_OS), or you can simply search for the application itself. If you are using Gnome, it is called gnome-terminal; on KDE, it is Konsole, but just looking for "terminal" do the trick most of the time. Once it comes up, you will be welcomed with a prompt that looks something like this:
+First and foremost, open your terminal; on most Linux distros, this can be achieved with Ctrl+Alt+T or Super+T (I'm looking at you, Pop!_OS), or you can simply search for the application itself. If you are using Gnome, it is called gnome-terminal; on KDE, it is Konsole, but just looking for "terminal" do the trick most of the time. Once it comes up, you will be welcomed with a prompt that looks something like this:
 
 ```
 [username@hostname ~]$
@@ -24,11 +24,11 @@ Now we can get started; the terminal itself is nothing scary. It is just an inte
 
 ## The Movements and interactions
 
-When it comes to the basic movements, you have the Up and Down Arrow that will cycle through your history of commands; you have the left and right to move horizontally through words; you have Ctrl+C to cancel the current command that is running; you have Ctral+A and Ctrl+E to go to the beginning of the line and the end respectively, and you have many more shortcuts you can use inside the terminal. Still, for the time being, those are the most crucial. A quick note regarding copying and pasting from and to the command line, you can't use Ctrl+C to copy or Ctrl+V to paste. You have to use Ctrl+Shift+C to copy and Ctrl+Shift+V to paste.
+When it comes to the basic movements, you have the Up and Down Arrow that will cycle through your history of commands; you have the left and right to move horizontally through words; you have Ctrl+C to cancel the current command that is running; you have Ctrl+A and Ctrl+E to go to the beginning of the line and the end respectively, and you have many more shortcuts you can use inside the terminal. Still, for the time being, those are the most crucial. A quick note regarding copying and pasting from and to the command line, you can't use Ctrl+C to copy or Ctrl+V to paste. You have to use Ctrl+Shift+C to copy and Ctrl+Shift+V to paste.
 
 ## Navigation with the terminal
 
-In Unix-based operating systems like Linux or macOS, the file system is organized in a Tree-Like way. This means that we have only one directory at the root level (conveniently called root and denoted with /) that contains other directories and files. Your terminal works relatively to one of these paths inside your file system, and conveniently, by default, this path is the same as the main folder of your user, located on ***/home/[username]** *, You can interactively ask what the current path is with the command _**pw**d_ (print working directory):
+In Unix-based operating systems like Linux or macOS, the file system is organized in a Tree-Like way. This means that we have only one directory at the root level (conveniently called root and denoted with /) that contains other directories and files. Your terminal works relatively to one of these paths inside your file system, and conveniently, by default, this path is the same as the main folder of your user, located on `/home/[username]`. You can interactively ask what the current path is with the command `pwd` (print working directory):
 
 ```
 [username@hostname ~]$ pwd
@@ -36,7 +36,7 @@ In Unix-based operating systems like Linux or macOS, the file system is organize
 [username@hostname ~]$
 ```
 
-Now, to know which files and folders are available under the current path, you could use the command _**l**s_:
+Now, to know which files and folders are available under the current path, you could use the command `ls`:
 
 ```
 [username@hostname ~]$ ls
@@ -44,7 +44,7 @@ Desktop  Documents  Downloads  Music  Pictures Public Videos
 [username@hostname ~]$
 ```
 
-And the last piece of the puzzle is the command to move through your filesystem, which lets you change the current working directory by specifying the directory you want to go to. This command is ***cd** *(change directory):
+And the last piece of the puzzle is the command to move through your filesystem, which lets you change the current working directory by specifying the directory you want to go to. This command is `cd` (change directory):
 
 ```
 [username@hostname ~]$ cd Downloads
@@ -79,7 +79,7 @@ A quick note regarding filenames, these are case-sensitive, so you must use the 
 
 ## Command options
 
-Commands are not fancy features built-in in the terminal. No, they are their own independent application, each one of them. These are applications designed to work optimally through a command-line interface, and these applications usually come with options to modify their default behavior entering options. Options are a way to change the behavior of these applications, and they look like single letters preceded by a dash. For example, to list all files and folders in the current directory, including the hidden ones (the ones that begin with a period), you can specify the ***-**a* option to _**l**s_:
+Commands are not fancy features built-in in the terminal. No, they are their own independent application, each one of them. These are applications designed to work optimally through a command-line interface, and these applications usually come with options to modify their default behavior entering options. Options are a way to change the behavior of these applications, and they look like single letters preceded by a dash. For example, to list all files and folders in the current directory, including the hidden ones (the ones that begin with a period), you can specify the `-a` option to `ls`:
 
 ```
 [username@hostname ~]$ ls -a
@@ -88,7 +88,7 @@ Commands are not fancy features built-in in the terminal. No, they are their own
 [username@hostname ~]$
 ```
 
-Usually, you can get a more in-depth explanation of each one of those flags with the _**--hel**p_ flag in the command itself:
+Usually, you can get a more in-depth explanation of each one of those flags with the `--help` flag in the command itself:
 
 ```
 [username@hostname ~]$ pwd --help
@@ -110,25 +110,25 @@ pwd: pwd [-LP]
 
 ## Basic commands to interact with files and folders
 
-Now we know how to move around in the terminal, but that is little to no use if we can't interact with the pieces of it. Enter '_**touc**h_', '_**c**p_', '_**m**v_', '_**mkdi**r_', '_**l**n_', and '_**r**m_'. Here is a short description of each one:
+Now we know how to move around in the terminal, but that is little to no use if we can't interact with the pieces of it. Enter `touch`, `cp`, `mv`, `mkdir`, `ln`, and `rm`. Here is a short description of each one:
 
-- _**touc**h_: allows you to create files.
+- `touch`: allows you to create files.
 
-- _**c**p_: copy the files specified from one location to another.
+- `cp`: copy the files specified from one location to another.
 
-- _**m**v_: move or rename the files from one place to another.
+- `mv`: move or rename the files from one place to another.
 
-- _**mkdi**r_: create directories.
+- `mkdir`: create directories.
 
-- _**l**n_: create symbolic links
+- `ln`: create symbolic links
 
-- _**r**m_: remove files.
+- `rm`: remove files.
 
-These commands and the previously described ones are among the most used commands. So let's check them one by one with an example for each one.
+These commands and the previously described ones are among the most used commands. So let's check `touch` with an example.
 
-### The touch command
+### The `touch` command
 
-The touch command is used to create empty files or to update the access and modification timestamps of an already existing file. His syntax is as follows:
+The `touch` command is used to create empty files or to update the access and modification timestamps of an already existing file. His syntax is as follows:
 
 ```
 [username@hostname ~]$ cd
@@ -158,8 +158,6 @@ drwxr-xr-x@ - username  3 Nov 19:59 Videos
 .rw-rw-r--  0 username 27 Nov 00:17 world.txt
 .rw-rw-r--  0 username 27 Nov 00:17 your.md
 ```
-
-### The cp command [wip]
 
 # Conclusion
 

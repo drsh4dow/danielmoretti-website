@@ -28,7 +28,9 @@
 >
 	<div class="mb-12 flex items-center justify-center sm:mb-14 lg:mb-20 lg:px-6">
 		<div class="h-px w-full bg-sky-500"></div>
-		<h2 class="font-inter px-6 text-3xl font-bold whitespace-nowrap sm:text-5xl">
+		<h2
+			class="font-inter px-6 text-center text-3xl font-bold whitespace-normal sm:text-5xl sm:whitespace-nowrap"
+		>
 			Professional Experience
 		</h2>
 		<div class="h-px w-full bg-sky-500"></div>

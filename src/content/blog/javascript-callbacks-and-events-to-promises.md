@@ -8,7 +8,7 @@ bannerAlt: 'Converting Javascript/Typescript callback-based APIs to Promise-base
 bannerCredit: '<a href="https://www.freepik.com/free-photo/businessman-hand-holding-lightbulb-with-glowing-light-creative-smart-thinking-inspiration-innovation-with-network-concept_24755713.htm">Image by DilokaStudio</a> on Freepik'
 ---
 
-### Reasoning
+# Reasoning
 
 Not so long ago, I needed to make some pdf rendering on the server as a response to a request, so I resource to use PdfKit to do the job. After digging and poking around pdfkit, I realised that the output it produces is a pure readable Stream, so I would have to listen to the `end` event to make a buffer and only then send it to the client, so it would be kind of cumbersome to have everything written on the same function or to be passing around the response object around multiple functions to be able to answer through the callback. Also, the server endpoint would have no idea when it would fire back a response. So I conclude that it would be better to rewrite that pdf generation procedure as a Promise and return just the Buffer in memory once the procedure is completed. At the same time, the main function will have to `await` for the Buffer.
 

@@ -35,20 +35,20 @@
 	<div class="mb-20 flex justify-center">
 		<div class="flex items-center justify-center gap-4">
 			<a
-				class="text-base font-black text-slate-200/90 hover:text-slate-100 sm:text-xl"
+				class="-my-2.5 inline-flex min-h-11 items-center text-base font-black text-slate-200/90 hover:text-slate-100 sm:-my-2 sm:text-xl"
 				href="/resume.pdf"
 				target="_blank">Resume</a
 			>
 			<div class="inline h-4 border border-slate-200/5"></div>
 			<a
-				class="text-base font-black text-slate-200/90 hover:text-slate-100 sm:text-xl"
+				class="-my-2.5 inline-flex min-h-11 items-center text-base font-black text-slate-200/90 hover:text-slate-100 sm:-my-2 sm:text-xl"
 				href="https://github.com/drsh4dow"
 				rel="noreferrer"
 				target="_blank">Github</a
 			>
 			<div class="inline h-4 border border-slate-200/5"></div>
 			<a
-				class="text-base font-black text-slate-200/90 hover:text-slate-100 sm:text-xl"
+				class="-my-2.5 inline-flex min-h-11 items-center text-base font-black text-slate-200/90 hover:text-slate-100 sm:-my-2 sm:text-xl"
 				rel="noreferrer"
 				href="https://www.linkedin.com/in/dmorettiv"
 				target="_blank">LinkedIn</a

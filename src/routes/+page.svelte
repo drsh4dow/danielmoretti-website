@@ -19,6 +19,10 @@
 	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://danielmoretti.com" />
+	<meta property="og:image" content="https://danielmoretti.com/images/blog/terminal-survival.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="canonical" href="https://danielmoretti.com" />
 </svelte:head>
 

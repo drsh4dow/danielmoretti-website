@@ -35,6 +35,11 @@
 			'Segoe UI Symbol',
 			'Noto Color Emoji';
 	}
+
+	section,
+	:is(h1, h2, h3, h4, h5, h6)[id] {
+		scroll-margin-top: 5rem;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

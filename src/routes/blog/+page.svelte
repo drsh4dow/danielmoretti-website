@@ -11,6 +11,17 @@
 		name="description"
 		content="Daniel Moretti's blog about software engineering, TypeScript, Rust, AI agents, Linux, and developer tooling."
 	/>
+	<meta property="og:title" content="Daniel Moretti's Blog" />
+	<meta
+		property="og:description"
+		content="Daniel Moretti's blog about software engineering, TypeScript, Rust, AI agents, Linux, and developer tooling."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://danielmoretti.com/blog" />
+	<meta property="og:image" content="https://danielmoretti.com/images/blog/terminal-survival.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="canonical" href="https://danielmoretti.com/blog" />
 </svelte:head>
 

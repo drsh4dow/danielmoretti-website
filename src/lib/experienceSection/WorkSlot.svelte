@@ -25,7 +25,7 @@
 	type="button"
 	onclick={ontoggle}
 	aria-expanded={expanded}
-	aria-controls={panelId}
+	aria-controls={expanded ? panelId : undefined}
 	class="mx-auto mb-2 flex w-full max-w-2xl cursor-pointer items-center justify-between rounded-lg bg-sky-700 px-2 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 sm:px-6"
 >
 	<span class="flex min-w-0 items-center justify-start">
@@ -69,7 +69,7 @@
 				<li class="mb-2">&nbsp;{point}</li>
 			{/each}
 		</ul>
-		<h4 class="text-base font-bold text-slate-200/75 sm:text-lg md:text-xl">{techStack}</h4>
+		<p class="text-base font-bold text-slate-200/75 sm:text-lg md:text-xl">{techStack}</p>
 	</div>
 {/if}
 

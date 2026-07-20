@@ -48,8 +48,12 @@ async function getMarked() {
 			}
 		}),
 		{
-			// shiki already emits a <pre class="shiki"> block
 			renderer: {
+				heading({ tokens, depth }) {
+					const level = Math.min(depth + 1, 6);
+					return `<h${level}>${this.parser.parseInline(tokens)}</h${level}>\n`;
+				},
+				// shiki already emits a <pre class="shiki"> block
 				code({ text, lang, escaped }) {
 					if (escaped && text.startsWith('<pre')) return text;
 					return `<pre><code>${text}</code></pre>`;

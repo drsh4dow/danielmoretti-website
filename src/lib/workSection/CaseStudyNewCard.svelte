@@ -88,7 +88,7 @@
 			</div>
 		{/if}
 		<div class="hidden w-[520px] p-10 lg:block">
-			<h4 class="text-2xl font-black">{appType}</h4>
+			<h3 class="text-2xl font-black">{appType}</h3>
 			<h2 class="font-inter mb-4 text-4xl font-bold">{appName}</h2>
 			<h3 class="mb-10 text-2xl font-black text-slate-200">Design & Development</h3>
 			{#if href}
@@ -107,7 +107,7 @@
 		</div>
 	{:else}
 		<div class="hidden w-[520px] p-10 lg:block">
-			<h4 class="text-right text-2xl font-black">{appType}</h4>
+			<h3 class="text-right text-2xl font-black">{appType}</h3>
 			<h2 class="font-inter mb-4 text-right text-4xl font-bold">{appName}</h2>
 			<h3 class="mb-10 text-right text-2xl font-black text-slate-200">Design & Development</h3>
 			{#if href}
