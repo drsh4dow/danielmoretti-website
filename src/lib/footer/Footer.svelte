@@ -55,7 +55,7 @@
 			>
 		</div>
 	</div>
-	<p class="text-center text-xs font-black text-slate-200/60 sm:text-lg">
+	<p class="text-center text-xs font-black text-slate-400 sm:text-lg">
 		Designed with <span class="text-red-500">&#10084;</span> and Coded with fun by Daniel Moretti
 	</p>
 </footer>

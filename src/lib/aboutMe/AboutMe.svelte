@@ -35,7 +35,7 @@
 
 <section
 	use:inview={options}
-	class="my-20 grid grid-cols-1 justify-between gap-10 overflow-hidden transition-[opacity,transform] duration-500 ease-out sm:my-40 md:grid-cols-2 lg:mb-60
+	class="my-20 grid grid-cols-1 justify-between gap-10 overflow-hidden transition-[opacity,transform] duration-500 ease-out sm:my-40 lg:mb-60 lg:grid-cols-2
 		{mounted && !isInView ? 'translate-x-4 opacity-0' : 'translate-x-0 opacity-100'}"
 	id="about-me-section"
 >
@@ -72,15 +72,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="flex items-start justify-center md:justify-end md:pt-28">
+	<div class="flex items-start justify-center lg:justify-end lg:pt-28">
 		<div class="group">
-			<figure class=" relative w-60 p-4 transition-transform group-hover:scale-95 sm:w-96 sm:p-6">
+			<figure class="relative w-60 p-4 transition-transform group-[:hover]:scale-95 sm:w-96 sm:p-6">
 				<div class="absolute top-0 right-0">
 					<div class="w-14 border-t border-sky-500 sm:w-24"></div>
 					<div class="h-14 border-r border-sky-500 sm:h-24"></div>
 				</div>
 				<img
-					class="rounded-lg shadow-xs transition-transform group-hover:scale-110"
+					class="rounded-lg shadow-xs transition-transform group-[:hover]:scale-110"
 					src={Me}
 					alt="Daniel Moretti"
 					width="720"

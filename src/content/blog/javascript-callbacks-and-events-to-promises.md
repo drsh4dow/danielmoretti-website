@@ -1,10 +1,10 @@
 ---
-title: 'Converting JavaScript/Typescript Callback-based APIs to Promise-based APIs: A Guide'
+title: 'Converting JavaScript/TypeScript Callback-based APIs to Promise-based APIs: A Guide'
 description: 'In the world of JavaScript development, callbacks and events have long been the standard way of handling asynchronous operations. However, with the introduction of Promises in ES6, developers now have a more elegant and efficient way of handling asynchronous operations. This blog post will explore the basics of Promises and how they can be used to replace callback-based APIs.'
 date: 2023-01-14
 updated: 2023-01-14
 banner: /images/blog/callbacks-to-promises.jpg
-bannerAlt: 'Converting Javascript/Typescript callback-based APIs to Promise-based APIs'
+bannerAlt: 'Converting Javascript/TypeScript callback-based APIs to Promise-based APIs'
 bannerCredit: '<a href="https://www.freepik.com/free-photo/businessman-hand-holding-lightbulb-with-glowing-light-creative-smart-thinking-inspiration-innovation-with-network-concept_24755713.htm">Image by DilokaStudio</a> on Freepik'
 ---
 

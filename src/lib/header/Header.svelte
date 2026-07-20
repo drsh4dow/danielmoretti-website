@@ -3,7 +3,7 @@
 	import Logo from './Logo.svg';
 </script>
 
-<header class="fixed z-30 h-16 w-full border-b border-slate-50/5 bg-slate-900/75 backdrop-blur-lg">
+<header class="fixed z-30 h-16 w-full border-b border-slate-50/5 bg-slate-900">
 	<div
 		class="mx-auto flex h-full max-w-screen-xl items-center justify-between px-2 sm:px-4 md:px-6"
 	>

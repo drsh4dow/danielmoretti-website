@@ -51,7 +51,7 @@
 				height="630"
 			/>
 			{#if data.post.bannerCredit}
-				<p class="px-1 py-2 text-sm text-slate-500 [&_a]:text-sky-400 [&_a]:underline">
+				<p class="px-1 py-2 text-sm text-slate-400 [&_a]:text-sky-400 [&_a]:underline">
 					{@html data.post.bannerCredit}
 				</p>
 			{/if}
