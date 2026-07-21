@@ -32,7 +32,12 @@
 	/>
 </svelte:head>
 
-<article class="pb-16 sm:pb-24">
+<article class="relative isolate pb-16 sm:pb-24">
+	<div
+		class="mappa-ambience pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2"
+		aria-hidden="true"
+	></div>
+
 	<a
 		href="/#work-section"
 		data-sveltekit-preload-data
@@ -57,13 +62,8 @@
 	<section
 		use:inview={revealOptions}
 		class:reveal-pending={mounted}
-		class="reveal relative grid min-h-[calc(100svh-9rem)] items-center gap-14 overflow-hidden py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-24"
+		class="reveal relative grid min-h-[calc(100svh-9rem)] items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:py-24"
 	>
-		<div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-			<div class="absolute top-1/4 -left-44 size-96 rounded-full bg-sky-500/10 blur-3xl"></div>
-			<div class="absolute right-0 bottom-0 size-80 rounded-full bg-indigo-500/10 blur-3xl"></div>
-		</div>
-
 		<div class="min-w-0">
 			<p
 				class="mb-5 flex items-center gap-3 text-xs font-black tracking-[0.24em] text-sky-400 uppercase"
@@ -88,7 +88,10 @@
 		</div>
 
 		<div class="relative mx-auto w-full max-w-xl">
-			<div class="absolute -inset-5 rounded-[2rem] bg-sky-500/5 blur-2xl" aria-hidden="true"></div>
+			<div
+				class="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(closest-side,rgba(14,165,233,0.08),rgba(14,165,233,0.04)_45%,transparent_78%)]"
+				aria-hidden="true"
+			></div>
 			<div
 				class="relative overflow-hidden rounded-3xl border border-slate-700/80 bg-slate-950/70 p-5 shadow-2xl shadow-sky-950/30 backdrop-blur sm:p-8"
 			>
@@ -283,6 +286,18 @@
 </article>
 
 <style>
+	.mappa-ambience {
+		background:
+			radial-gradient(
+				ellipse 38% 10% at 42% 7%,
+				rgba(14, 165, 233, 0.09) 0%,
+				rgba(14, 165, 233, 0.04) 42%,
+				transparent 76%
+			),
+			radial-gradient(ellipse 26% 9% at 68% 34%, rgba(99, 102, 241, 0.055) 0%, transparent 74%),
+			radial-gradient(ellipse 30% 11% at 32% 60%, rgba(14, 165, 233, 0.04) 0%, transparent 76%);
+	}
+
 	.reveal {
 		transition:
 			opacity 500ms ease-out,

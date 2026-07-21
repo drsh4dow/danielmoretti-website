@@ -85,7 +85,7 @@
 
 <section
 	use:inview={options}
-	class="relative isolate mx-auto max-w-6xl overflow-hidden px-3 py-16 transition-[opacity,transform] duration-500 ease-out sm:px-6 sm:py-24 lg:py-32
+	class="relative isolate mx-auto max-w-6xl overflow-hidden px-3 pb-16 transition-[opacity,transform] duration-500 ease-out sm:px-6 sm:pb-24 lg:pb-32
 		{mounted && !isInView ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}"
 >
 	<div
@@ -93,7 +93,28 @@
 		class="pointer-events-none absolute top-16 left-1/2 -z-10 h-64 w-64 -translate-x-1/2 rounded-full bg-sky-500/10 blur-3xl sm:h-96 sm:w-96"
 	></div>
 
-	<header class="mb-10 sm:mb-14 lg:mb-16">
+	<a
+		href="/#work-section"
+		data-sveltekit-preload-data
+		class="group mt-6 inline-flex items-center gap-3 rounded-full text-sm font-bold text-slate-300 outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900 sm:mt-10"
+	>
+		<span
+			class="grid size-11 place-items-center rounded-full border border-sky-500/70 transition-colors group-[:hover]:bg-sky-500/10"
+		>
+			<svg aria-hidden="true" class="size-5" viewBox="0 0 24 24" fill="none">
+				<path
+					d="M15 18L9 12L15 6"
+					stroke="currentColor"
+					stroke-width="1.75"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</span>
+		<span class="transition-colors group-[:hover]:text-white">Back to selected work</span>
+	</a>
+
+	<header class="mt-16 mb-10 sm:mt-24 sm:mb-14 lg:mb-16">
 		<div class="mb-6 flex min-w-0 items-center">
 			<h1 class="font-inter shrink-0 pr-5 text-4xl font-bold sm:pr-8 sm:text-6xl">Open Source</h1>
 			<div class="h-px min-w-0 flex-1 bg-sky-500"></div>
