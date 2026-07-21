@@ -48,11 +48,11 @@
 		</svg>
 		<span class="min-w-0">
 			<span class="block text-lg font-bold sm:text-xl">{title} {company}</span>
-			<span class="block text-sm font-bold text-slate-100/80 sm:hidden">{since}–{until}</span>
+			<span class="block text-sm font-bold text-slate-100/80 sm:hidden">{since} - {until}</span>
 		</span>
 	</span>
 	<span class="ml-4 hidden shrink-0 text-xl font-bold whitespace-nowrap sm:inline">
-		{since}–{until}
+		{since} - {until}
 	</span>
 </button>
 

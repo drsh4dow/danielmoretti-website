@@ -35,6 +35,28 @@
 	</div>
 	<div class="flex flex-wrap justify-center gap-10 lg:gap-20">
 		<CaseStudyNewCard
+			appName="Mappa"
+			appType="Voice AI Platform"
+			cardDirection="Left"
+			srcLogo={DanielMorettiLogo}
+			srcBg="/images/mappa/mappa-bg.svg"
+			altBg="Abstract voice analysis waveform for Mappa"
+			altLogo="Daniel Moretti Logo"
+			classColor="bg-sky-500/90"
+			href="/showcase/mappa"
+		/>
+		<CaseStudyNewCard
+			appName="Open Source"
+			appType="Rust · TypeScript · Tooling"
+			cardDirection="Right"
+			srcLogo={DanielMorettiLogo}
+			srcBg="/images/open-source/open-source-bg.svg"
+			altBg="Abstract terminal and code interface for open source projects"
+			altLogo="Daniel Moretti Logo"
+			classColor="bg-teal-500/90"
+			href="/showcase/open-source"
+		/>
+		<CaseStudyNewCard
 			appName="E-Ficha"
 			appType="Web Application"
 			cardDirection="Left"

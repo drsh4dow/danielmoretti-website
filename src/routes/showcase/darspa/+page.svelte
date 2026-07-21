@@ -6,13 +6,13 @@
 	<title>DarSpa Case Study</title>
 	<meta
 		name="description"
-		content="DarSpa case study — healthcare center website built from the ground up with Next.js, TypeScript, tRPC, and Prismic by Daniel Moretti."
+		content="DarSpa case study: healthcare center website built from the ground up with Next.js, TypeScript, tRPC, and Prismic by Daniel Moretti."
 	/>
 	<link rel="canonical" href="https://danielmoretti.com/showcase/darspa" />
 	<meta property="og:title" content="DarSpa Case Study" />
 	<meta
 		property="og:description"
-		content="DarSpa case study — healthcare center website built from the ground up with Next.js, TypeScript, tRPC, and Prismic by Daniel Moretti."
+		content="DarSpa case study: healthcare center website built from the ground up with Next.js, TypeScript, tRPC, and Prismic by Daniel Moretti."
 	/>
 </svelte:head>
 

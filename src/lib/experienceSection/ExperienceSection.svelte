@@ -40,7 +40,7 @@
 			id={1}
 			expanded={activeId === 1}
 			ontoggle={() => (activeId = activeId === 1 ? null : 1)}
-			title="Co-Founder & CTO"
+			title="Co-Founder & CTO, hands-on IC"
 			company="@ Mappa"
 			since="2023"
 			until="2026"

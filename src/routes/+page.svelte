@@ -7,15 +7,15 @@
 </script>
 
 <svelte:head>
-	<title>Daniel Moretti — Co-Founder & CTO at Mappa</title>
+	<title>Daniel Moretti | Rust · TypeScript · AI Agents</title>
 	<meta
 		name="description"
-		content="Daniel Moretti is Co-Founder & CTO of Mappa, building AI voice agents and production systems in Rust, TypeScript, and Python. Portfolio, experience, and writing."
+		content="Daniel Moretti is a software engineer who built a voice AI company's entire stack, from first commit to 100+ B2B clients. Rust, TypeScript, and AI agents. Portfolio and writing."
 	/>
-	<meta property="og:title" content="Daniel Moretti — Co-Founder & CTO at Mappa" />
+	<meta property="og:title" content="Daniel Moretti | Rust · TypeScript · AI Agents" />
 	<meta
 		property="og:description"
-		content="Daniel Moretti is Co-Founder & CTO of Mappa, building AI voice agents and production systems in Rust, TypeScript, and Python. Portfolio, experience, and writing."
+		content="Daniel Moretti is a software engineer who built a voice AI company's entire stack, from first commit to 100+ B2B clients. Rust, TypeScript, and AI agents. Portfolio and writing."
 	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://danielmoretti.com" />

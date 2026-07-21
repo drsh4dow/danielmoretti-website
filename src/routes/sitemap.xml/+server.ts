@@ -6,9 +6,14 @@ export const prerender = true;
 const siteUrl = 'https://danielmoretti.com';
 
 export const GET: RequestHandler = () => {
-	const staticUrls = ['/', '/blog', '/showcase/darspa', '/showcase/e-ficha'].map(
-		(path) => `\t<url>\n\t\t<loc>${siteUrl}${path}</loc>\n\t</url>`
-	);
+	const staticUrls = [
+		'/',
+		'/blog',
+		'/showcase/mappa',
+		'/showcase/open-source',
+		'/showcase/darspa',
+		'/showcase/e-ficha'
+	].map((path) => `\t<url>\n\t\t<loc>${siteUrl}${path}</loc>\n\t</url>`);
 	const postUrls = getAllPostsMeta().map(
 		(post) =>
 			`\t<url>\n\t\t<loc>${siteUrl}/blog/${encodeURIComponent(post.uid)}</loc>\n\t\t<lastmod>${post.updated}</lastmod>\n\t</url>`

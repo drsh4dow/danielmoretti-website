@@ -107,8 +107,7 @@
 					class="mb-6 text-left text-base font-bold text-slate-200/75 transition-[opacity,transform] duration-500 ease-out sm:text-xl md:mb-20 md:text-2xl lg:mb-12 lg:text-right lg:text-3xl
 					{mounted && !isInView ? 'translate-x-2.5 opacity-0' : 'translate-x-0 opacity-100'}"
 				>
-					Co-Founder & CTO at <span class="text-sky-400/75">Mappa</span><br />
-					Rust · TypeScript · AI Agents & <span class="text-sky-400/75">Voice Systems</span>
+					Rust · TypeScript · <span class="text-sky-400/75">AI Agents</span>
 				</p>
 			</div>
 		</div>

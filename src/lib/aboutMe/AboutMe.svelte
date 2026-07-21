@@ -45,20 +45,18 @@
 			<div class="h-px w-full bg-sky-500"></div>
 		</div>
 		<p class="text-left text-base text-slate-200 sm:text-xl">
-			I'm Daniel, Co-Founder & CTO of Mappa. I built our voice-AI platform for analyzing recruitment
-			interviews end-to-end, from the first commit to serving 100+ SMB and enterprise clients across
-			the Americas. Its voice pipeline—Deepgram STT → LLM analysis → structured reports—processes
-			100+ interviews a day, and I'm now going deep as a hands-on IC.
+			I got pulled into code in 2015 while building a website for my own small business. What
+			started with HTML and CSS quickly became a love for solving problems and learning how things
+			work.
 		</p>
 		<p class="py-4 text-left text-base text-slate-200 sm:text-xl">
-			It started in 2015, when I built a website for my own small business. Learning HTML, CSS, and
-			JavaScript pulled me into a never-ending hole of knowledge and challenges. I then spent six
-			years as an independent engineer shipping production web apps—including
-			healthcare-administration systems used daily by clinical staff—before founding Mappa in 2023.
+			I spent three years as co-founder and CTO of Mappa, building its voice AI stack from the first
+			commit to serving 100+ B2B clients. Now I'm going deep as a hands-on engineer, mostly with
+			Rust, TypeScript, and AI agents.
 		</p>
 		<p class="text-left text-base text-slate-200 sm:text-xl">
-			I'm passionate about open source (qstash-rs, upwork-wlroots-bridge), Linux, Neovim, and music
-			&#9835;. Based in Santiago, Chile (GMT-4).
+			Outside work, I'm just some guy who loves open source, Linux, Neovim, and music &#9835;. I'm
+			also the father of a little toddler, which keeps life wonderfully busy.
 		</p>
 
 		<div class="mt-8">
