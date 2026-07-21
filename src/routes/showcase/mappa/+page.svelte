@@ -160,9 +160,8 @@
 			</div>
 			<div class="lg:pt-9">
 				<p class="text-lg leading-relaxed text-slate-200 sm:text-xl">
-					Mappa is novel technology, not an API wrapper. Its proprietary neural network has 100M+
-					parameters, analyzes 100,000+ vocal markers, and maps them to 75 behavioral traits that
-					LLMs help interpret.
+					Mappa is novel technology, not an API wrapper. Its proprietary neural network analyzes
+					100,000+ vocal markers and maps them to 75 behavioral traits that LLMs help interpret.
 				</p>
 			</div>
 		</div>
@@ -177,7 +176,7 @@
 			Business impact
 		</h3>
 		<div
-			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-2 lg:grid-cols-5"
+			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-3"
 		>
 			<div class="bg-slate-900 p-6 sm:p-7">
 				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100+</p>
@@ -191,26 +190,14 @@
 				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">300+</p>
 				<p class="mt-3 text-sm leading-relaxed text-slate-300">hours cut per hiring cycle</p>
 			</div>
-			<div class="bg-slate-900 p-6 sm:p-7">
-				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">~$30k</p>
-				<p class="mt-3 text-sm leading-relaxed text-slate-300">saved per role</p>
-			</div>
-			<div class="bg-slate-900 p-6 sm:p-7">
-				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">72h</p>
-				<p class="mt-3 text-sm leading-relaxed text-slate-300">voice note to ranked shortlist</p>
-			</div>
 		</div>
 
 		<h3 class="mt-10 mb-4 text-sm font-black tracking-[0.18em] text-slate-400 uppercase">
 			The model
 		</h3>
 		<div
-			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-3"
+			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-2"
 		>
-			<div class="bg-slate-950 p-6 sm:p-8">
-				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100M+</p>
-				<p class="mt-3 text-sm leading-relaxed text-slate-300">model parameters</p>
-			</div>
 			<div class="bg-slate-950 p-6 sm:p-8">
 				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100,000+</p>
 				<p class="mt-3 text-sm leading-relaxed text-slate-300">vocal markers analyzed</p>
