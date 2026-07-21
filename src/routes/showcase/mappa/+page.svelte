@@ -22,13 +22,13 @@
 	<title>Mappa Case Study | Daniel Moretti</title>
 	<meta
 		name="description"
-		content="Mappa case study about a production voice AI platform for recruitment interview analysis, built by Daniel Moretti."
+		content="Mappa decodes human behavior from voice using a proprietary neural network and LLMs."
 	/>
 	<link rel="canonical" href="https://danielmoretti.com/showcase/mappa" />
 	<meta property="og:title" content="Mappa Case Study | Daniel Moretti" />
 	<meta
 		property="og:description"
-		content="Mappa case study about a production voice AI platform for recruitment interview analysis, built by Daniel Moretti."
+		content="Mappa decodes human behavior from voice using a proprietary neural network and LLMs."
 	/>
 </svelte:head>
 
@@ -69,7 +69,7 @@
 				class="mb-5 flex items-center gap-3 text-xs font-black tracking-[0.24em] text-sky-400 uppercase"
 			>
 				<span class="h-px w-10 bg-sky-500"></span>
-				Case study · Voice AI
+				Behavior decoding
 			</p>
 			<h1
 				class="font-inter text-[clamp(4rem,18vw,9rem)] leading-[0.85] font-bold tracking-[-0.07em]"
@@ -77,25 +77,14 @@
 				Mappa
 			</h1>
 			<p class="mt-8 max-w-2xl text-xl leading-relaxed text-slate-200 sm:text-2xl">
-				A voice AI platform for analyzing recruitment interviews.
+				Mappa decodes human behavior from voice.
 			</p>
-			<p class="mt-5 text-sm font-bold text-slate-400 sm:text-base">
-				Co-Founder & CTO, hands-on IC · 2023 - 2026
+			<p class="mt-4 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
+				A short recording becomes a behavioral profile.
 			</p>
-			<div class="mt-9 flex flex-wrap gap-2" aria-label="Core technology stack">
-				<span
-					class="rounded-full border border-slate-700 bg-slate-800/70 px-4 py-2 text-sm font-bold"
-					>Rust</span
-				>
-				<span
-					class="rounded-full border border-slate-700 bg-slate-800/70 px-4 py-2 text-sm font-bold"
-					>TypeScript</span
-				>
-				<span
-					class="rounded-full border border-slate-700 bg-slate-800/70 px-4 py-2 text-sm font-bold"
-					>AI Agents</span
-				>
-			</div>
+			<p class="mt-6 text-sm font-bold text-slate-400 sm:text-base">
+				Co-Founder & CTO · 2023 - 2026
+			</p>
 		</div>
 
 		<div class="relative mx-auto w-full max-w-xl">
@@ -110,7 +99,7 @@
 						<span class="size-2 rounded-full bg-slate-700"></span>
 					</div>
 					<span class="font-mono text-[0.65rem] tracking-[0.18em] text-slate-500 uppercase"
-						>Production signal</span
+						>Behavior signal</span
 					>
 				</div>
 
@@ -131,11 +120,11 @@
 					</div>
 					<div class="mt-5 flex items-end justify-between gap-4 border-t border-slate-800 pt-5">
 						<div>
-							<p class="text-xs font-bold tracking-wider text-slate-500 uppercase">Throughput</p>
+							<p class="text-xs font-bold tracking-wider text-slate-500 uppercase">Decoded daily</p>
 							<p class="font-inter mt-1 text-3xl font-bold text-white">100+</p>
 						</div>
 						<p class="max-w-28 text-right text-xs leading-relaxed text-slate-400">
-							interviews per day in production
+							interviews in production
 						</p>
 					</div>
 				</div>
@@ -144,38 +133,15 @@
 					class="mt-5 grid grid-cols-3 gap-2 text-center text-[0.65rem] font-black uppercase sm:gap-3 sm:text-xs"
 				>
 					<div class="rounded-lg border border-slate-800 bg-slate-900/60 px-2 py-3 text-slate-400">
-						Listen
+						Voice
 					</div>
 					<div class="rounded-lg border border-sky-500/30 bg-sky-500/10 px-2 py-3 text-sky-300">
-						Reason
+						Decode
 					</div>
 					<div class="rounded-lg border border-slate-800 bg-slate-900/60 px-2 py-3 text-slate-400">
-						Report
+						Behavior
 					</div>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<section use:inview={revealOptions} class:reveal-pending={mounted} class="reveal py-20 sm:py-28">
-		<div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-			<div>
-				<p class="mb-4 text-xs font-black tracking-[0.24em] text-sky-400 uppercase">
-					01 · The problem
-				</p>
-				<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">
-					The interview ended. The insight stayed trapped in audio.
-				</h2>
-			</div>
-			<div class="lg:pt-9">
-				<p class="text-lg leading-relaxed text-slate-200 sm:text-xl">
-					Recruiters run hundreds of interviews. The raw material is rich, but listening again,
-					finding patterns, and turning every conversation into a useful hiring signal takes time.
-				</p>
-				<p class="mt-6 text-lg leading-relaxed text-slate-400 sm:text-xl">
-					Mappa turned that unstructured audio into consistent, structured reports that teams could
-					use without replaying every recording.
-				</p>
 			</div>
 		</div>
 	</section>
@@ -185,178 +151,70 @@
 		class:reveal-pending={mounted}
 		class="reveal border-y border-slate-800 py-20 sm:py-28"
 	>
-		<div class="mb-12 flex flex-col gap-6 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
-			<div class="max-w-3xl">
-				<p class="mb-4 text-xs font-black tracking-[0.24em] text-sky-400 uppercase">
-					02 · The voice pipeline
-				</p>
-				<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">
-					From conversation to decision ready output.
-				</h2>
+		<div class="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start lg:gap-20">
+			<div>
+				<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">The technology</h2>
 			</div>
-			<p class="max-w-md text-base leading-relaxed text-slate-400 sm:text-lg">
-				An end to end production pipeline processing 100+ interviews every day.
-			</p>
+			<div class="lg:pt-9">
+				<p class="text-lg leading-relaxed text-slate-200 sm:text-xl">
+					Mappa is novel technology, not an API wrapper. Its proprietary neural network has 100M+
+					parameters, analyzes 100,000+ vocal markers, and maps them to 75 behavioral traits that
+					LLMs help interpret.
+				</p>
+			</div>
 		</div>
-
-		<figure>
-			<ol
-				class="grid min-w-0 items-stretch gap-3 md:grid-cols-[minmax(0,1fr)_2rem_minmax(0,1fr)_2rem_minmax(0,1fr)_2rem_minmax(0,1fr)] md:gap-2"
-			>
-				<li class="min-w-0 rounded-2xl border border-slate-700 bg-slate-800/40 p-5 sm:p-6">
-					<div class="mb-8 flex items-center justify-between">
-						<span
-							class="grid size-9 place-items-center rounded-full bg-slate-700 text-xs font-black"
-							>01</span
-						>
-						<svg aria-hidden="true" class="size-6 text-sky-400" viewBox="0 0 24 24" fill="none">
-							<path
-								d="M12 4V20M8 8V16M4 10V14M16 7V17M20 10V14"
-								stroke="currentColor"
-								stroke-width="1.5"
-								stroke-linecap="round"
-							/>
-						</svg>
-					</div>
-					<h3 class="font-inter text-xl font-bold">Audio</h3>
-					<p class="mt-2 text-sm leading-relaxed text-slate-400">
-						The interview enters the system.
-					</p>
-				</li>
-				<li class="grid h-8 place-items-center md:h-auto" aria-hidden="true">
-					<svg class="size-5 rotate-90 text-sky-500 md:rotate-0" viewBox="0 0 24 24" fill="none">
-						<path
-							d="M5 12H19M14 7L19 12L14 17"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
-				</li>
-				<li class="min-w-0 rounded-2xl border border-slate-700 bg-slate-800/40 p-5 sm:p-6">
-					<div class="mb-8 flex items-center justify-between">
-						<span
-							class="grid size-9 place-items-center rounded-full bg-slate-700 text-xs font-black"
-							>02</span
-						>
-						<span class="font-mono text-xs font-bold text-sky-400">STT</span>
-					</div>
-					<h3 class="font-inter text-xl font-bold">Deepgram</h3>
-					<p class="mt-2 text-sm leading-relaxed text-slate-400">Speech becomes searchable text.</p>
-				</li>
-				<li class="grid h-8 place-items-center md:h-auto" aria-hidden="true">
-					<svg class="size-5 rotate-90 text-sky-500 md:rotate-0" viewBox="0 0 24 24" fill="none">
-						<path
-							d="M5 12H19M14 7L19 12L14 17"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
-				</li>
-				<li class="min-w-0 rounded-2xl border border-sky-500/50 bg-sky-500/10 p-5 sm:p-6">
-					<div class="mb-8 flex items-center justify-between">
-						<span
-							class="grid size-9 place-items-center rounded-full bg-sky-500 text-xs font-black text-white"
-							>03</span
-						>
-						<span class="size-3 rounded-full bg-sky-400 shadow-[0_0_16px_rgba(56,189,248,0.8)]"
-						></span>
-					</div>
-					<h3 class="font-inter text-xl font-bold">LLM analysis</h3>
-					<p class="mt-2 text-sm leading-relaxed text-slate-300">
-						Agents extract and reason over signals.
-					</p>
-				</li>
-				<li class="grid h-8 place-items-center md:h-auto" aria-hidden="true">
-					<svg class="size-5 rotate-90 text-sky-500 md:rotate-0" viewBox="0 0 24 24" fill="none">
-						<path
-							d="M5 12H19M14 7L19 12L14 17"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
-				</li>
-				<li class="min-w-0 rounded-2xl border border-slate-700 bg-slate-800/40 p-5 sm:p-6">
-					<div class="mb-8 flex items-center justify-between">
-						<span
-							class="grid size-9 place-items-center rounded-full bg-slate-700 text-xs font-black"
-							>04</span
-						>
-						<svg aria-hidden="true" class="size-6 text-sky-400" viewBox="0 0 24 24" fill="none">
-							<path
-								d="M7 3H14L19 8V21H7V3Z"
-								stroke="currentColor"
-								stroke-width="1.5"
-								stroke-linejoin="round"
-							/>
-							<path
-								d="M14 3V8H19M10 13H16M10 17H16"
-								stroke="currentColor"
-								stroke-width="1.5"
-								stroke-linecap="round"
-							/>
-						</svg>
-					</div>
-					<h3 class="font-inter text-xl font-bold">Structured reports</h3>
-					<p class="mt-2 text-sm leading-relaxed text-slate-400">
-						Consistent output ready for teams.
-					</p>
-				</li>
-			</ol>
-			<figcaption class="mt-6 text-center text-sm text-slate-500">
-				The production path, shown without exposing the product interface.
-			</figcaption>
-		</figure>
 	</section>
 
 	<section use:inview={revealOptions} class:reveal-pending={mounted} class="reveal py-20 sm:py-28">
-		<div class="mb-12 max-w-3xl sm:mb-16">
-			<p class="mb-4 text-xs font-black tracking-[0.24em] text-sky-400 uppercase">
-				03 · The intelligence layer
-			</p>
-			<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">
-				Agents built for production, not a demo.
-			</h2>
-			<p class="mt-6 text-lg leading-relaxed text-slate-400 sm:text-xl">
-				I built the orchestration layer on the Vercel AI SDK. Every path was designed to produce
-				reliable structured results under real production conditions.
-			</p>
+		<div class="mb-10 max-w-3xl sm:mb-14">
+			<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">Business metrics</h2>
 		</div>
 
-		<div class="grid gap-4 lg:grid-cols-3">
-			<div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-6 sm:p-8">
-				<p class="font-mono text-xs font-bold tracking-wider text-sky-400 uppercase">Tool use</p>
-				<h3 class="font-inter mt-12 text-2xl font-bold">Give the model a controlled way to act.</h3>
+		<h3 class="mb-4 text-sm font-black tracking-[0.18em] text-slate-400 uppercase">
+			Business impact
+		</h3>
+		<div
+			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-2 lg:grid-cols-5"
+		>
+			<div class="bg-slate-900 p-6 sm:p-7">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100+</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">B2B clients across the Americas</p>
 			</div>
-			<div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-6 sm:p-8">
-				<p class="font-mono text-xs font-bold tracking-wider text-sky-400 uppercase">Retries</p>
-				<h3 class="font-inter mt-12 text-2xl font-bold">
-					Recover when a model call does not land.
-				</h3>
+			<div class="bg-slate-900 p-6 sm:p-7">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100+</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">interviews decoded daily</p>
 			</div>
-			<div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-6 sm:p-8">
-				<p class="font-mono text-xs font-bold tracking-wider text-sky-400 uppercase">
-					Structured outputs
-				</p>
-				<h3 class="font-inter mt-12 text-2xl font-bold">Keep downstream data predictable.</h3>
+			<div class="bg-slate-900 p-6 sm:p-7">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">300+</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">hours cut per hiring cycle</p>
+			</div>
+			<div class="bg-slate-900 p-6 sm:p-7">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">~$30k</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">saved per role</p>
+			</div>
+			<div class="bg-slate-900 p-6 sm:p-7">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">72h</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">voice note to ranked shortlist</p>
 			</div>
 		</div>
 
-		<div class="mt-4 rounded-2xl border border-sky-500/30 bg-sky-500/10 p-6 sm:p-8">
-			<div class="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-10">
-				<p class="font-inter text-5xl font-bold text-sky-400 sm:text-6xl">Hundreds</p>
-				<div>
-					<h3 class="font-inter text-xl font-bold sm:text-2xl">Eval cases before production</h3>
-					<p class="mt-2 max-w-2xl leading-relaxed text-slate-300">
-						Hundreds of evaluation cases gated the agent system so quality could be measured before
-						changes reached customers.
-					</p>
-				</div>
+		<h3 class="mt-10 mb-4 text-sm font-black tracking-[0.18em] text-slate-400 uppercase">
+			The model
+		</h3>
+		<div
+			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-3"
+		>
+			<div class="bg-slate-950 p-6 sm:p-8">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100M+</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">model parameters</p>
+			</div>
+			<div class="bg-slate-950 p-6 sm:p-8">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">100,000+</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">vocal markers analyzed</p>
+			</div>
+			<div class="bg-slate-950 p-6 sm:p-8">
+				<p class="font-inter text-4xl font-bold text-sky-400 sm:text-5xl">75</p>
+				<p class="mt-3 text-sm leading-relaxed text-slate-300">behavioral traits mapped</p>
 			</div>
 		</div>
 	</section>
@@ -364,98 +222,17 @@
 	<section
 		use:inview={revealOptions}
 		class:reveal-pending={mounted}
-		class="reveal grid gap-12 border-y border-slate-800 py-20 sm:py-28 lg:grid-cols-2 lg:gap-20"
+		class="reveal border-y border-slate-800 py-20 sm:py-28"
 	>
-		<div>
-			<p class="mb-4 text-xs font-black tracking-[0.24em] text-sky-400 uppercase">
-				04 · The foundation
-			</p>
-			<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">
-				Event driven by design.
-			</h2>
-			<p class="mt-6 text-lg leading-relaxed text-slate-400 sm:text-xl">
-				The backend combined TypeScript and Rust with Postgres and Temporal. The result was a
-				production system built around durable workflows and clear event boundaries.
-			</p>
-			<p class="mt-6 text-lg leading-relaxed text-slate-200 sm:text-xl">
-				I led the team as the largest code contributor, from the first commit through the production
-				platform.
-			</p>
-		</div>
-
-		<figure class="rounded-3xl border border-slate-700/80 bg-slate-950/60 p-5 sm:p-8">
-			<figcaption class="mb-8 font-mono text-xs tracking-[0.18em] text-slate-500 uppercase">
-				Backend architecture
-			</figcaption>
-			<div class="grid gap-4 sm:grid-cols-2">
-				<div class="rounded-xl border border-sky-500/40 bg-sky-500/10 p-5">
-					<p class="text-xs font-black text-sky-400 uppercase">Backend language</p>
-					<p class="font-inter mt-2 text-2xl font-bold">TypeScript</p>
-				</div>
-				<div class="rounded-xl border border-sky-500/40 bg-sky-500/10 p-5">
-					<p class="text-xs font-black text-sky-400 uppercase">Backend language</p>
-					<p class="font-inter mt-2 text-2xl font-bold">Rust</p>
-				</div>
+		<div class="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start lg:gap-20">
+			<div>
+				<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">My part</h2>
 			</div>
-			<div class="my-4 flex justify-center" aria-hidden="true">
-				<svg class="size-5 rotate-90 text-slate-500" viewBox="0 0 24 24" fill="none">
-					<path
-						d="M5 12H19M14 7L19 12L14 17"
-						stroke="currentColor"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</div>
-			<div class="rounded-xl border border-slate-700 bg-slate-800/60 p-5 text-center">
-				<p class="text-xs font-black text-slate-400 uppercase">Durable orchestration</p>
-				<p class="font-inter mt-2 text-2xl font-bold">Temporal</p>
-			</div>
-			<div class="my-4 flex justify-center" aria-hidden="true">
-				<svg class="size-5 rotate-90 text-slate-500" viewBox="0 0 24 24" fill="none">
-					<path
-						d="M5 12H19M14 7L19 12L14 17"
-						stroke="currentColor"
-						stroke-width="1.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</div>
-			<div class="rounded-xl border border-slate-700 bg-slate-800/60 p-5 text-center">
-				<p class="text-xs font-black text-slate-400 uppercase">Data layer</p>
-				<p class="font-inter mt-2 text-2xl font-bold">Postgres</p>
-			</div>
-		</figure>
-	</section>
-
-	<section use:inview={revealOptions} class:reveal-pending={mounted} class="reveal py-20 sm:py-28">
-		<div class="mb-12 max-w-3xl sm:mb-16">
-			<p class="mb-4 text-xs font-black tracking-[0.24em] text-sky-400 uppercase">
-				05 · Scale and impact
-			</p>
-			<h2 class="font-inter text-3xl leading-tight font-bold sm:text-5xl">
-				Production scale. Measurable outcomes.
-			</h2>
-		</div>
-
-		<div
-			class="grid gap-px overflow-hidden rounded-3xl border border-slate-800 bg-slate-800 sm:grid-cols-3"
-		>
-			<div class="bg-slate-900 p-7 sm:p-9">
-				<p class="font-inter text-5xl font-bold text-sky-400 sm:text-6xl">100+</p>
-				<p class="mt-4 leading-relaxed text-slate-300">
-					SMB and enterprise clients across the Americas
+			<div class="lg:pt-9">
+				<p class="text-lg leading-relaxed text-slate-200 sm:text-xl">
+					I built Mappa from the first commit to 100+ clients across the Americas. I led the team as
+					its largest code contributor and stayed hands-on throughout.
 				</p>
-			</div>
-			<div class="bg-slate-900 p-7 sm:p-9">
-				<p class="font-inter text-5xl font-bold text-sky-400 sm:text-6xl">300+</p>
-				<p class="mt-4 leading-relaxed text-slate-300">hours cut from hiring cycles</p>
-			</div>
-			<div class="bg-slate-900 p-7 sm:p-9">
-				<p class="font-inter text-5xl font-bold text-sky-400 sm:text-6xl">~$30k</p>
-				<p class="mt-4 leading-relaxed text-slate-300">saved per role</p>
 			</div>
 		</div>
 	</section>
@@ -463,7 +240,7 @@
 	<aside
 		use:inview={revealOptions}
 		class:reveal-pending={mounted}
-		class="reveal rounded-2xl border border-slate-700 bg-slate-800/40 p-6 sm:p-8"
+		class="reveal mt-20 rounded-2xl border border-slate-700 bg-slate-800/40 p-6 sm:mt-28 sm:p-8"
 	>
 		<div class="flex gap-4 sm:items-center">
 			<span
@@ -471,8 +248,7 @@
 				>i</span
 			>
 			<p class="text-base leading-relaxed text-slate-300 sm:text-lg">
-				The product itself lives behind an NDA, so this page shows the architecture rather than the
-				screens.
+				Mappa is protected by an NDA, so this page focuses on technology and outcomes.
 			</p>
 		</div>
 	</aside>
@@ -482,9 +258,8 @@
 		class:reveal-pending={mounted}
 		class="reveal py-24 text-center sm:py-36"
 	>
-		<p class="mb-4 text-xs font-black tracking-[0.24em] text-sky-400 uppercase">The next build</p>
 		<h2 class="font-inter mx-auto max-w-4xl text-4xl leading-tight font-bold sm:text-6xl">
-			Need an engineer who goes deep and ships the whole system?
+			Need a hands-on CTO who ships?
 		</h2>
 		<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
 			<a

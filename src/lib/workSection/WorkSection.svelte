@@ -3,6 +3,7 @@
 	import BelenLogo from './belen-logo.svg';
 	import DarSpaLogo from './darspa-logo.svg';
 	import DanielMorettiLogo from './daniel-moretti-logo.svg';
+	import MappaLogo from './mappa-logo.svg';
 	import CaseStudyNewCard from './CaseStudyNewCard.svelte';
 	import { inview } from '$lib/util/inview';
 	import type { Options } from '$lib/types';
@@ -36,12 +37,12 @@
 	<div class="flex flex-wrap justify-center gap-10 lg:gap-20">
 		<CaseStudyNewCard
 			appName="Mappa"
-			appType="Voice AI Platform"
+			appType="Behavior Decoding Platform"
 			cardDirection="Left"
-			srcLogo={DanielMorettiLogo}
+			srcLogo={MappaLogo}
 			srcBg="/images/mappa/mappa-bg.svg"
 			altBg="Abstract voice analysis waveform for Mappa"
-			altLogo="Daniel Moretti Logo"
+			altLogo="Mappa Logo"
 			classColor="bg-sky-500/90"
 			href="/showcase/mappa"
 		/>
