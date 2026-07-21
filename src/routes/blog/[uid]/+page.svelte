@@ -63,6 +63,6 @@
 		{@html data.post.html}
 	</div>
 </article>
-<h5 class="text-center text-xs font-black text-slate-200/20 sm:text-lg">
+<h5 class="text-center text-xs font-black text-slate-400 sm:text-lg">
 	Designed with <span class="text-red-500">&#10084;</span> and Coded with fun by Daniel Moretti
 </h5>

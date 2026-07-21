@@ -13,6 +13,6 @@
 	Skip to content
 </a>
 <Header />
-<main id="main-content" class="mx-auto max-w-screen-xl px-2 sm:px-4 md:px-6">
+<main id="main-content" class="mx-auto max-w-screen-xl overflow-x-clip px-2 sm:px-4 md:px-6">
 	{@render children?.()}
 </main>
