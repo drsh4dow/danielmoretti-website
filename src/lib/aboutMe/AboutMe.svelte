@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Me from './me.jpg';
+	import Me from './me.png';
 	import Chip from '$lib/chip/Chip.svelte';
 	import { inview } from '$lib/util/inview';
 	import type { Options } from '$lib/types';
