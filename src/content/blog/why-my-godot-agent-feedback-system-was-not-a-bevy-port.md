@@ -1,9 +1,8 @@
 ---
 title: 'Why My Godot Agent Feedback System Was Not a Bevy Port'
 description: 'Moving agent feedback from a reusable Bevy plugin to a project-owned Godot skill changed the guarantees, ownership boundary, and evaluation strategy.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 70
+date: 2026-07-16
+updated: 2026-07-16
 banner: /images/blog/bevy-to-godot-agent-feedback.png
 bannerAlt: 'The same low-poly game world through two windows beside a camera and controller'
 ---

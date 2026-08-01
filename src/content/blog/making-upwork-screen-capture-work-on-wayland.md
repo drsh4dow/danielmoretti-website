@@ -1,9 +1,8 @@
 ---
 title: 'Making Upwork Screen Capture Work on Wayland'
 description: 'How I built a small Rust compatibility bridge between Upwork’s GNOME D-Bus calls and wlroots screenshot and idle tools.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 20
+date: 2023-02-23
+updated: 2023-02-23
 banner: /images/blog/upwork-wayland-screen-capture.png
 bannerAlt: 'Sky-blue light passing through a portal between two dark surfaces'
 ---

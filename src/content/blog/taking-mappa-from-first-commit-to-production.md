@@ -1,9 +1,8 @@
 ---
 title: 'Taking Mappa from First Commit to Production'
 description: 'A firsthand account of turning a voice-analysis model into a durable, evaluated product workflow.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 60
+date: 2026-06-04
+updated: 2026-06-04
 banner: /images/blog/mappa-first-commit-to-production.png
 bannerAlt: 'A studio microphone sending blue voice waves into layered amber forms'
 ---

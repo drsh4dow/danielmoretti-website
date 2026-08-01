@@ -1,9 +1,8 @@
 ---
 title: 'Why Offline-First Was the Right Default for Clinical Software'
 description: 'Why clinical software needs local durability, explicit authority, recovery, and honest limits—not a cache trick.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 90
+date: 2026-07-24
+updated: 2026-07-24
 banner: /images/blog/historia-offline-first.png
 bannerAlt: 'A battery lamp illuminating blank record cards beside a local workstation in a dark clinic'
 ---

@@ -10,7 +10,6 @@ export interface BlogPostMeta {
 	date: string;
 	displayDate: string;
 	updated: string;
-	sequence: number;
 	banner?: string;
 	bannerAlt?: string;
 	bannerCredit?: string;
@@ -103,7 +102,6 @@ function toPostMeta(uid: string, meta: Record<string, string>): BlogPostMeta {
 		date: meta.date ?? '',
 		displayDate: meta.date ? toDisplayDate(meta.date) : '',
 		updated: meta.updated ?? meta.date ?? '',
-		sequence: Number(meta.sequence ?? 0),
 		banner: meta.banner,
 		bannerAlt: meta.bannerAlt,
 		bannerCredit: meta.bannerCredit
@@ -117,7 +115,7 @@ export function getAllPostsMeta(): BlogPostMeta[] {
 		return toPostMeta(uid, meta);
 	});
 
-	return posts.sort((a, b) => b.date.localeCompare(a.date) || b.sequence - a.sequence);
+	return posts.sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export async function getPost(uid: string): Promise<BlogPost | undefined> {

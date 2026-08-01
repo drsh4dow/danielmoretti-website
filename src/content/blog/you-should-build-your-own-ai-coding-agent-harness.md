@@ -3,7 +3,6 @@ title: 'You Should Build Your Own AI Coding Agent Harness'
 description: 'The model is not the workflow. Why I built a Pi harness around shared intent, bounded delegation, negative diffs, and verified execution.'
 date: 2026-08-01
 updated: 2026-08-01
-sequence: 100
 banner: /images/blog/ai-coding-agent-harness.png
 bannerAlt: 'Hand-woven blue and slate ribbons cradling a small amber core'
 ---

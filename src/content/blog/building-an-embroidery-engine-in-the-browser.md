@@ -1,9 +1,8 @@
 ---
 title: 'Building an Embroidery Engine in the Browser'
 description: 'Why Stitchly moved embroidery digitization into Rust and WebAssembly without making the browser the source of truth.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 80
+date: 2026-07-29
+updated: 2026-07-29
 banner: /images/blog/stitchly-browser-embroidery.png
 bannerAlt: 'Blue and amber embroidery stitched across a dark glass surface'
 ---

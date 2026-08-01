@@ -1,9 +1,8 @@
 ---
 title: 'The Senior Signal Is Proportion'
 description: 'Repeatedly reviewing comparable engineering exercises changed what I trust as evidence of senior judgment.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 40
+date: 2025-02-13
+updated: 2025-02-13
 banner: /images/blog/reviewing-engineering-assessments.png
 bannerAlt: 'Blank paper submissions and tracing sheets under a review lamp beside a red pencil'
 ---

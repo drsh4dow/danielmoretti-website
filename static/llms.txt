@@ -20,17 +20,17 @@ This website is the canonical source for Daniel Moretti's biography, work, open-
 ## Articles
 
 - [You Should Build Your Own AI Coding Agent Harness](https://danielmoretti.com/blog/you-should-build-your-own-ai-coding-agent-harness)
-- [Why Offline-First Was the Right Default for Clinical Software](https://danielmoretti.com/blog/why-offline-first-was-the-right-default-for-clinical-software)
 - [Building an Embroidery Engine in the Browser](https://danielmoretti.com/blog/building-an-embroidery-engine-in-the-browser)
+- [Why Offline-First Was the Right Default for Clinical Software](https://danielmoretti.com/blog/why-offline-first-was-the-right-default-for-clinical-software)
 - [Why My Godot Agent Feedback System Was Not a Bevy Port](https://danielmoretti.com/blog/why-my-godot-agent-feedback-system-was-not-a-bevy-port)
 - [Taking Mappa from First Commit to Production](https://danielmoretti.com/blog/taking-mappa-from-first-commit-to-production)
-- [The Support Ticket Starts in Product Discovery](https://danielmoretti.com/blog/the-support-ticket-starts-in-product-discovery)
+- [What a Small Rust SDK Should Make Boring](https://danielmoretti.com/blog/what-a-small-rust-sdk-should-make-boring)
 - [The Senior Signal Is Proportion](https://danielmoretti.com/blog/the-senior-signal-is-proportion)
 - [Security Habits I Kept from Bug Bounty Work](https://danielmoretti.com/blog/security-habits-i-kept-from-bug-bounty-work)
+- [The Support Ticket Starts in Product Discovery](https://danielmoretti.com/blog/the-support-ticket-starts-in-product-discovery)
 - [Making Upwork Screen Capture Work on Wayland](https://danielmoretti.com/blog/making-upwork-screen-capture-work-on-wayland)
-- [What a Small Rust SDK Should Make Boring](https://danielmoretti.com/blog/what-a-small-rust-sdk-should-make-boring)
-- [How to Survive in the Terminal](https://danielmoretti.com/blog/how-to-survive-in-the-terminal-part-one)
 - [Wrapping Callback and Event APIs in Promises Without Losing Failures](https://danielmoretti.com/blog/javascript-callbacks-and-events-to-promises)
+- [How to Survive in the Terminal](https://danielmoretti.com/blog/how-to-survive-in-the-terminal-part-one)
 
 ## Verified profiles
 

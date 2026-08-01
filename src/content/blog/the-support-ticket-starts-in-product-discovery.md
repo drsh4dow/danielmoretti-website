@@ -1,9 +1,8 @@
 ---
 title: 'The Support Ticket Starts in Product Discovery'
 description: 'Owning discovery, interface, deployment, and support made the downstream cost of early product decisions impossible to ignore.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 50
+date: 2023-06-15
+updated: 2023-06-15
 banner: /images/blog/six-years-end-to-end.png
 bannerAlt: 'Product sketches, prototypes, calipers, and a finished object on a workbench'
 ---

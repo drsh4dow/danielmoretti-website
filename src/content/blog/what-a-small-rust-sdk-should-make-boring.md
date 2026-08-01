@@ -1,9 +1,8 @@
 ---
 title: 'What a Small Rust SDK Should Make Boring'
 description: 'qstash-rs as a case study in protocol translation, inbound verification, useful errors, and explicit scope.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 10
+date: 2026-04-30
+updated: 2026-04-30
 banner: /images/blog/qstash-rust-sdk.png
 bannerAlt: 'A small paper parcel waiting in a row of dark delivery slots'
 ---

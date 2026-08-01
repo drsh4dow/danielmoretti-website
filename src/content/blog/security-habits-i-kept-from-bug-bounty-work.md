@@ -1,9 +1,8 @@
 ---
 title: 'Security Habits I Kept from Bug Bounty Work'
 description: 'How bug bounty work shaped the way I map attack surfaces, question trust boundaries, limit authority, test failure paths, and demand evidence.'
-date: 2026-08-01
-updated: 2026-08-01
-sequence: 30
+date: 2024-02-08
+updated: 2024-02-08
 banner: /images/blog/security-habits-bug-bounty.png
 bannerAlt: 'Sealed translucent envelopes crossed by blue inspection light and an amber thread'
 ---
