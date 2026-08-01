@@ -51,6 +51,39 @@
 			note: null
 		}
 	];
+	const title = 'Open-Source Software by Daniel Moretti';
+	const description =
+		'Open-source projects by Daniel Moretti across Rust, TypeScript, AI coding agents, Wayland, and Linux tooling.';
+	const structuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'CollectionPage',
+		'@id': 'https://danielmoretti.com/showcase/open-source#collection',
+		url: 'https://danielmoretti.com/showcase/open-source',
+		name: title,
+		description,
+		inLanguage: 'en',
+		creator: {
+			'@type': 'Person',
+			'@id': 'https://danielmoretti.com/#daniel-moretti',
+			name: 'Daniel Moretti',
+			url: 'https://danielmoretti.com/'
+		},
+		mainEntity: {
+			'@type': 'ItemList',
+			itemListElement: projects.map((project, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				item: {
+					'@type': 'CreativeWork',
+					name: project.name,
+					description: project.description,
+					url: project.href,
+					keywords: project.language,
+					creator: { '@id': 'https://danielmoretti.com/#daniel-moretti' }
+				}
+			}))
+		}
+	};
 
 	let mounted = $state(false);
 	let isInView = $state(false);
@@ -68,19 +101,28 @@
 </script>
 
 <svelte:head>
-	<title>Open Source | Daniel Moretti</title>
-	<meta
-		name="description"
-		content="Open-source projects by Daniel Moretti across Rust, TypeScript, AI coding agents, Wayland, and Linux tooling."
-	/>
+	<title>{title}</title>
+	<meta name="description" content={description} />
 	<link rel="canonical" href="https://danielmoretti.com/showcase/open-source" />
-	<meta property="og:title" content="Open Source | Daniel Moretti" />
-	<meta
-		property="og:description"
-		content="Open-source projects by Daniel Moretti across Rust, TypeScript, AI coding agents, Wayland, and Linux tooling."
-	/>
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://danielmoretti.com/showcase/open-source" />
+	<meta
+		property="og:image"
+		content="https://danielmoretti.com/images/open-source/open-source-social.jpg"
+	/>
+	<meta property="og:image:alt" content="Abstract open-source terminal and code interface" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta
+		name="twitter:image"
+		content="https://danielmoretti.com/images/open-source/open-source-social.jpg"
+	/>
+	{@html `<script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
 <section

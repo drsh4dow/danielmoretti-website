@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Me from './me.png';
 	import Chip from '$lib/chip/Chip.svelte';
 	import { inview } from '$lib/util/inview';
 	import type { Options } from '$lib/types';
@@ -44,17 +43,22 @@
 			<h2 class="font-inter pr-6 text-3xl font-bold whitespace-nowrap sm:text-5xl">About Me</h2>
 			<div class="h-px w-full bg-sky-500"></div>
 		</div>
+		<p class="mb-3 text-sm font-bold tracking-wide text-sky-400 uppercase">Chile · Remote</p>
 		<p class="text-left text-base text-slate-200 sm:text-xl">
+			Hands-on product engineer and former co-founder/CTO with 10+ years shipping production
+			software across product, architecture, infrastructure, and security.
+		</p>
+		<p class="py-4 text-left text-base text-slate-200 sm:text-xl">
 			I got pulled into code in 2015 while building a website for my own small business. What
 			started with HTML and CSS quickly became a love for solving problems and learning how things
 			work.
 		</p>
-		<p class="py-4 text-left text-base text-slate-200 sm:text-xl">
+		<p class="text-left text-base text-slate-200 sm:text-xl">
 			I spent three years as co-founder and CTO of Mappa, building its voice AI stack from the first
 			commit to serving 100+ B2B clients. Now I'm going deep as a hands-on engineer, mostly with
 			Rust, TypeScript, and AI agents.
 		</p>
-		<p class="text-left text-base text-slate-200 sm:text-xl">
+		<p class="pt-4 text-left text-base text-slate-200 sm:text-xl">
 			Outside work, I'm just some guy who loves open source, Linux, Neovim, and music &#9835;. I'm
 			also the father of a little toddler, which keeps life wonderfully busy.
 		</p>
@@ -79,10 +83,10 @@
 				</div>
 				<img
 					class="rounded-lg shadow-xs transition-transform group-[:hover]:scale-110"
-					src={Me}
-					alt="Daniel Moretti"
-					width="720"
-					height="720"
+					src="/images/profile/daniel-moretti.jpg"
+					alt="Portrait of Daniel Moretti"
+					width="1254"
+					height="1254"
 				/>
 				<div class="absolute bottom-0 left-0">
 					<div class="h-14 border-l border-sky-500 sm:h-24"></div>

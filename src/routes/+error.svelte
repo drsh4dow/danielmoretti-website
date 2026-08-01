@@ -4,6 +4,7 @@
 
 <svelte:head>
 	<title>{page.status} | Daniel Moretti</title>
+	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <section class="flex min-h-screen items-center justify-center py-24">

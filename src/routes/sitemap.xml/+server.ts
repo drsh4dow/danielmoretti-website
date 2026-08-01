@@ -9,11 +9,15 @@ export const GET: RequestHandler = () => {
 	const staticUrls = [
 		'/',
 		'/blog',
+		'/resume.pdf',
 		'/showcase/mappa',
 		'/showcase/open-source',
 		'/showcase/darspa',
 		'/showcase/e-ficha'
-	].map((path) => `\t<url>\n\t\t<loc>${siteUrl}${path}</loc>\n\t</url>`);
+	].map(
+		(path) =>
+			`\t<url>\n\t\t<loc>${siteUrl}${path}</loc>\n\t\t<lastmod>2026-07-31</lastmod>\n\t</url>`
+	);
 	const postUrls = getAllPostsMeta().map(
 		(post) =>
 			`\t<url>\n\t\t<loc>${siteUrl}/blog/${encodeURIComponent(post.uid)}</loc>\n\t\t<lastmod>${post.updated}</lastmod>\n\t</url>`
@@ -26,7 +30,8 @@ ${[...staticUrls, ...postUrls].join('\n')}
 
 	return new Response(sitemap, {
 		headers: {
-			'Content-Type': 'application/xml'
+			'Content-Type': 'application/xml; charset=utf-8',
+			'Cache-Control': 'public, max-age=3600'
 		}
 	});
 };

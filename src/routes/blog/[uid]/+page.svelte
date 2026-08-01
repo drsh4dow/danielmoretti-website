@@ -3,17 +3,55 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	const url = $derived(`https://danielmoretti.com/blog/${data.post.uid}`);
+	const image = $derived(
+		data.post.banner
+			? `https://danielmoretti.com${data.post.banner}`
+			: 'https://danielmoretti.com/images/profile/daniel-moretti-16x9.jpg'
+	);
+	const author = {
+		'@type': 'Person',
+		'@id': 'https://danielmoretti.com/#daniel-moretti',
+		name: 'Daniel Moretti',
+		url: 'https://danielmoretti.com/'
+	};
+	const structuredData = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		'@id': `${url}#article`,
+		mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+		headline: data.post.title,
+		description: data.post.description,
+		image,
+		datePublished: data.post.date,
+		dateModified: data.post.updated,
+		inLanguage: 'en',
+		author,
+		publisher: author
+	});
 </script>
 
 <svelte:head>
-	<title>{data.post.title} | Daniel Moretti's Blog</title>
+	<title>{data.post.title} | Daniel Moretti</title>
 	<meta name="description" content={data.post.description} />
-	<link rel="canonical" href={`https://danielmoretti.com/blog/${data.post.uid}`} />
+	<link rel="canonical" href={url} />
 	<meta property="og:title" content={data.post.title} />
 	<meta property="og:description" content={data.post.description} />
-	{#if data.post.banner}
-		<meta property="og:image" content={`https://danielmoretti.com${data.post.banner}`} />
-	{/if}
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={url} />
+	<meta property="og:image" content={image} />
+	<meta property="og:image:alt" content={data.post.bannerAlt ?? data.post.title} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="article:published_time" content={data.post.date} />
+	<meta property="article:modified_time" content={data.post.updated} />
+	<meta property="article:author" content="https://danielmoretti.com/" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={data.post.title} />
+	<meta name="twitter:description" content={data.post.description} />
+	<meta name="twitter:image" content={image} />
+	{@html `<script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
 <article class="mb-20 max-w-screen-md pt-16 sm:pt-20">
@@ -38,9 +76,18 @@
 	<p class="mb-4 text-lg font-bold text-slate-300 sm:text-xl">
 		{data.post.description}
 	</p>
-	<time class="mb-10 block text-sm text-sky-400" datetime={data.post.date}>
-		{data.post.displayDate}
-	</time>
+	<div class="mb-10 flex flex-wrap items-center gap-x-2 text-sm text-sky-400">
+		<span
+			>By <a class="font-bold underline underline-offset-4" href="/" rel="author">Daniel Moretti</a
+			></span
+		>
+		<span aria-hidden="true">·</span>
+		<time datetime={data.post.date}>{data.post.displayDate}</time>
+		{#if data.post.updated !== data.post.date}
+			<span aria-hidden="true">·</span>
+			<span>Updated <time datetime={data.post.updated}>{data.post.updated}</time></span>
+		{/if}
+	</div>
 	{#if data.post.banner}
 		<div class="mb-20 max-w-2xl overflow-hidden rounded-xl shadow">
 			<img

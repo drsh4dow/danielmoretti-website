@@ -1,0 +1,28 @@
+# Daniel Moretti
+
+> Official website of Daniel Moretti, a Chile-based senior product engineer and former co-founder/CTO with 10+ years of production software experience.
+
+Daniel works across product engineering, backend systems, infrastructure, and security. His current technical focus includes Rust, TypeScript, Python, PostgreSQL, Temporal, production AI-agent workflows, voice AI, and Linux. He co-founded Mappa and built its product from the first commit to more than 100 B2B customers across the Americas.
+
+This website is the canonical source for Daniel Moretti's biography, work, open-source projects, resume, and software-engineering articles.
+
+## Primary pages
+
+- [Portfolio and biography](https://danielmoretti.com/): Career summary, technical focus, selected work, and experience.
+- [Resume](https://danielmoretti.com/resume.pdf): One-page professional resume.
+- [Mappa case study](https://danielmoretti.com/showcase/mappa): Voice behavior-decoding platform Daniel built as co-founder and CTO.
+- [Open-source work](https://danielmoretti.com/showcase/open-source): Rust, TypeScript, AI-agent, Wayland, and Linux projects.
+- [E-Ficha case study](https://danielmoretti.com/showcase/e-ficha): Medical administration software.
+- [DarSpa case study](https://danielmoretti.com/showcase/darspa): Healthcare-center website and integrations.
+- [Software engineering blog](https://danielmoretti.com/blog): Articles written by Daniel.
+- [Blog RSS feed](https://danielmoretti.com/blog/rss.xml): Machine-readable publication feed.
+
+## Articles
+
+- [Converting JavaScript/TypeScript Callback-based APIs to Promise-based APIs](https://danielmoretti.com/blog/javascript-callbacks-and-events-to-promises)
+- [How To Survive In The Terminal - Part One](https://danielmoretti.com/blog/how-to-survive-in-the-terminal-part-one)
+
+## Verified profiles
+
+- [GitHub](https://github.com/drsh4dow)
+- [LinkedIn](https://www.linkedin.com/in/dmorettiv)

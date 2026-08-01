@@ -52,7 +52,7 @@
 				target="_blank"
 				aria-label="Visit Daniel's LinkedIn profile"
 				class="group mx-0.5 -my-1.5 inline-flex cursor-pointer items-center p-1.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 md:mx-2.5"
-				rel="noreferrer"
+				rel="me noreferrer"
 			>
 				<svg
 					width="32"
@@ -72,7 +72,7 @@
 				href="https://github.com/drsh4dow"
 				target="_blank"
 				aria-label="Visit Daniel's GitHub profile"
-				rel="noreferrer"
+				rel="me noreferrer"
 			>
 				<svg
 					width="32"

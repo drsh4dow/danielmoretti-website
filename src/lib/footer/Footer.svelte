@@ -43,13 +43,13 @@
 			<a
 				class="-my-2.5 inline-flex min-h-11 items-center text-base font-black text-slate-200/90 hover:text-slate-100 sm:-my-2 sm:text-xl"
 				href="https://github.com/drsh4dow"
-				rel="noreferrer"
+				rel="me noreferrer"
 				target="_blank">Github</a
 			>
 			<div class="inline h-4 border border-slate-200/5"></div>
 			<a
 				class="-my-2.5 inline-flex min-h-11 items-center text-base font-black text-slate-200/90 hover:text-slate-100 sm:-my-2 sm:text-xl"
-				rel="noreferrer"
+				rel="me noreferrer"
 				href="https://www.linkedin.com/in/dmorettiv"
 				target="_blank">LinkedIn</a
 			>

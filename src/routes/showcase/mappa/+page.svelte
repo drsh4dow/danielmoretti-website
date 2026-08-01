@@ -5,6 +5,26 @@
 
 	let mounted = $state(false);
 
+	const title = 'Mappa Case Study | Daniel Moretti';
+	const description =
+		'Daniel Moretti co-founded and built Mappa, a voice behavior-decoding platform serving 100+ B2B clients across the Americas.';
+	const structuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'CreativeWork',
+		'@id': 'https://danielmoretti.com/showcase/mappa#case-study',
+		url: 'https://danielmoretti.com/showcase/mappa',
+		name: 'Mappa case study',
+		description,
+		inLanguage: 'en',
+		creator: {
+			'@type': 'Person',
+			'@id': 'https://danielmoretti.com/#daniel-moretti',
+			name: 'Daniel Moretti',
+			url: 'https://danielmoretti.com/'
+		},
+		keywords: ['Voice AI', 'AI agents', 'TypeScript', 'Rust', 'PostgreSQL', 'Temporal']
+	};
+
 	const revealOptions: Options = {
 		rootMargin: '-64px',
 		unobserveOnEnter: true,
@@ -19,17 +39,22 @@
 </script>
 
 <svelte:head>
-	<title>Mappa Case Study | Daniel Moretti</title>
-	<meta
-		name="description"
-		content="Mappa decodes human behavior from voice using a proprietary neural network and LLMs."
-	/>
+	<title>{title}</title>
+	<meta name="description" content={description} />
 	<link rel="canonical" href="https://danielmoretti.com/showcase/mappa" />
-	<meta property="og:title" content="Mappa Case Study | Daniel Moretti" />
-	<meta
-		property="og:description"
-		content="Mappa decodes human behavior from voice using a proprietary neural network and LLMs."
-	/>
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://danielmoretti.com/showcase/mappa" />
+	<meta property="og:image" content="https://danielmoretti.com/images/mappa/mappa-social.jpg" />
+	<meta property="og:image:alt" content="Abstract voice analysis waveform for Mappa" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="https://danielmoretti.com/images/mappa/mappa-social.jpg" />
+	{@html `<script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`}
 </svelte:head>
 
 <article class="relative isolate pb-16 sm:pb-24">
