@@ -10,6 +10,7 @@ export interface BlogPostMeta {
 	date: string;
 	displayDate: string;
 	updated: string;
+	displayUpdated: string;
 	banner?: string;
 	bannerAlt?: string;
 	bannerCredit?: string;
@@ -102,6 +103,7 @@ function toPostMeta(uid: string, meta: Record<string, string>): BlogPostMeta {
 		date: meta.date ?? '',
 		displayDate: meta.date ? toDisplayDate(meta.date) : '',
 		updated: meta.updated ?? meta.date ?? '',
+		displayUpdated: meta.updated ? toDisplayDate(meta.updated) : '',
 		banner: meta.banner,
 		bannerAlt: meta.bannerAlt,
 		bannerCredit: meta.bannerCredit

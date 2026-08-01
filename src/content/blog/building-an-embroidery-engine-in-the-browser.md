@@ -1,163 +1,56 @@
 ---
 title: 'Building an Embroidery Engine in the Browser'
-description: 'Why Stitchly moved embroidery digitization into Rust and WebAssembly without making the browser the source of truth.'
+description: 'What it took to move embroidery digitization into Rust and WebAssembly.'
 date: 2026-07-29
-updated: 2026-07-29
+updated: 2026-08-01
 banner: /images/blog/stitchly-browser-embroidery.png
 bannerAlt: 'Blue and amber embroidery stitched across a dark glass surface'
 ---
 
-An embroidery file is not an image with a different extension.
+An embroidery file is a program for a machine, not an image wearing an unusual extension.
 
-It is an ordered program for a machine: move here, put the needle down, jump without sewing, change thread, trim, stop. The order matters. The physical units matter. A visually innocent shape can become a bad sewing path. A preview can look plausible while the exported bytes describe something else entirely.
+It says: move here, put the needle down, jump without sewing, change thread, trim, stop. Sequence and physical units matter. A shape can look fine on screen and still produce a poor sewing path; an attractive preview can hide bytes that describe something else.
 
-That is the boundary I had to respect while building Stitchly, a browser workspace for arranging lettering and designs on a hoop and exporting PES, DST, and JEF files. My first architecture kept the canvas in React, sent digitization to a remote Ink/Stitch container, and treated the result as an opaque download. Direct manipulation depended on a remote job, the domain model hid behind a file conversion, and browser preview drifted too far from final export.
+That fact shaped Stitchly, my browser workspace for arranging lettering and designs on a hoop and exporting PES, DST, and JEF. The browser needs to respond immediately, especially while someone resizes artwork. But it cannot simply declare its own output authoritative. I ended up running the same Rust digitizer in the browser for speed and at the edge before anything became authoritative.
 
-The redesign rests on one thesis: **the browser should own immediate computation, but it should not own authority**.
+Compiling Rust to Wasm was the easy part. The real work was deciding what the browser could calculate and what the server could trust.
 
-Stitchly now runs a deterministic Rust digitizer through WebAssembly in the browser, runs the same core at the edge for trusted publication, and shares one TypeScript embroidery engine across the browser, Cloudflare Worker, and CI. The difficult part was not compiling Rust to WASM. It was deciding what each layer was allowed to know, what had to remain immutable, and how to verify an implementation whose reference behavior came from third-party open-source projects I do not own.
+# One plan, two levels of authority
 
-# Start with the machine model, not the canvas
+Stitchly stores editable documents containing a hoop, lettering, designs, transforms, and thread choices. The document compiles into a flat, disposable machine plan. Preview, safety checks, and export all consume that plan, so they share the same rounding, ordering, and scaling decisions instead of developing separate interpretations.
 
-The editor stores a `Document`. It contains one hoop and an ordered list of Lettering and Design objects. Those objects have transforms and thread choices, but they do not contain a mutable sea of individual needle penetrations.
+Imported machine designs remain opaque stitch blocks. Stitchly can place them, recolor stable thread slots, and constrain unsafe scaling, but it does not pretend to recover semantic vector shapes from needle commands. Reverse-engineering meaning that is no longer in the file would be dishonest.
 
-A Design points to an immutable Stitch Block. Lettering points to immutable glyph Stitch Blocks plus the geometry needed to place them. The compiler resolves those artifacts, applies fixed-point transforms, assembles the result, runs guardrails, and produces a derived `StitchPlan`.
+For an existing document, the browser loads the document and its immutable artifacts, compiles them, and renders the resulting plan. Export differs at one important point: the Worker reloads the authoritative inputs, recompiles them, and writes the machine file. It accepts a document, never a browser-compiled plan. The client may compute an answer for responsiveness; it may not proclaim arbitrary stitch commands canonical.
 
-The distinction is deliberate. The `Document` is editable and persisted. The `StitchPlan` is flat, machine-level, and disposable. Its coordinates and commands live in bounded typed arrays. Rendering, hit-testing, safety checks, and codecs all consume that same plan. Undo does not edit it. The database does not preserve it as another competing source of truth.
+SVG upload adds digitization before compilation. The server sanitizes and canonicalizes the SVG, applies structural limits, and stores the source under its digest. The browser receives those canonical bytes and an explicit physical size. A module Worker loads the Wasm digitizer off the main thread and returns a bounded, format-neutral candidate for immediate display.
 
-This avoided an architectural trap I have seen in graphics software: the editor model and the export model slowly become two products. The canvas keeps rich objects with one set of transforms, while export reconstructs a second interpretation from whatever state happens to be available. Small differences in rounding, ordering, or scaling then become “preview versus output” bugs.
+The browser submits that candidate with its source and build identity. At the edge, an adapter runs the same Rust crate against the canonical source. Only that recomputation may publish the immutable stitch block used by projects and exports. A late browser result also cannot overwrite a newer edit. This keeps the expensive computation close to the pointer without trusting browser-supplied machine instructions.
 
-Stitchly instead rounds into the machine plan once. The same document and immutable artifacts must compile deterministically wherever the engine runs. Preview is not a decorative approximation generated by a separate stack. It is a view of the canonical plan that the codecs receive.
+# The remote job that failed resizing
 
-That still does not make every object editable at stitch level. Imported machine designs remain opaque Stitch Blocks. The compiler may place them, recolor stable thread slots, and limit unsafe scaling; it does not pretend it can recover the original semantic shapes from a sequence of needle commands. That limitation makes the model smaller and more honest.
+The first design used Ink/Stitch 3.2.2 in a pinned Cloudflare Container. An asynchronous job sent it canonical SVG and eventually published the result. It was defensible infrastructure: Ink/Stitch is mature, the native application was isolated, and a failed attempt left the previous valid design intact.
 
-# The browser pipeline, end to end
+It was also wrong for resizing. Changing an SVG's physical size changes stitch placement and density, so committing a new size requires fresh digitization. Under the remote design, that meant scheduling the job, starting the container, running Ink/Stitch, and returning the result while the interface polled. Further resizing and export waited.
 
-There are two related pipelines in Stitchly: compiling an existing document and digitizing new SVG artwork.
+Together, those steps turned direct manipulation into a remote job queue.
 
-The ordinary editor path is the simpler one:
+Faster polling would only have polished the delay. The replacement moves valid geometry under the pointer, then starts keyed Wasm work on commit. The browser shows the candidate immediately; the edge recomputes it before publication. If recomputation fails, the last valid design survives. The same Rust computation now serves interaction and trusted output, rather than forcing one of them to imitate the other.
 
-1. The browser loads the `Document` and its referenced immutable artifacts.
-2. The shared TypeScript engine compiles Lettering and Design objects into one normalized `StitchPlan`.
-3. The renderer walks sewing commands from that plan and draws the preview.
-4. Guardrails inspect the same plan for conditions such as hoop fit, short stitches, and crowded penetrations.
-5. On export, the Worker loads the authoritative document and artifacts, compiles them again, then writes PES, DST, or JEF.
+The engine's lineage needs to be explicit. Stitchly's TypeScript pattern model and PES/PEC, DST, and JEF codecs are a hand port of the relevant parts of MIT-licensed [pystitch v1.0.1](https://github.com/inkstitch/pystitch/tree/v1.0.1); its license and third-party notice remain with the port. Pystitch belongs to the pyembroidery lineage and is used by Ink/Stitch. I wrote the port and architecture, but its codec behavior is not mine.
 
-The server accepts a document as export input, never a browser-compiled plan. That is the authority boundary. A client can calculate the right answer for responsiveness, but it cannot declare its answer canonical or bypass export limits by posting arbitrary stitch commands.
+The Rust digitizer has different provenance. [Ink/Stitch](https://inkstitch.org/) is GPL-3.0-or-later and supplied the pinned behavioral reference and parity corpus. The Rust crate is independent work: published algorithms and observable behavior could be studied, but GPL source text and structure were not copied into the differently licensed product. Its permissively licensed geometry dependencies do not make the proprietary, otherwise unlicensed repository MIT. That attribution and separation matter more than a recital of the fill algorithm.
 
-SVG upload adds digitization before compilation:
+# Similar enough must still be provable
 
-1. The server sanitizes and canonicalizes the SVG, applies structural limits, and stores the source as a digest-identified artifact.
-2. The browser receives those canonical bytes and an explicit physical size.
-3. A dedicated module Worker loads the Rust WASM digitizer lazily.
-4. Rust normalizes SVG geometry, flattens curves, resolves supported fills and strokes, builds stitch paths, and emits a bounded format-neutral plan envelope.
-5. The browser validates the result and can show the geometry without waiting on a remote digitization service.
-6. The candidate result is sent with the complete source, profile, build, size, and request identity.
-7. A trusted edge adapter runs the same Rust core against the canonical source.
-8. Only the trusted recomputation can publish the immutable Stitch Block and preview artifacts used by projects and export.
+Machine-file codecs have a clean oracle: the pinned pystitch corpus can generate deterministic fixtures for byte-level comparison. Digitization is less tidy. Ink/Stitch's geometry stack and Stitchly's Rust stack do not make every rounding decision alike. Two paths may differ at isolated outer points while preserving the shape and its interior coverage. Exact coordinate matching would copy incidental quirks; looking at thumbnails and saying “close enough” would prove almost nothing.
 
-The browser and edge packages are thin bindings around the same Rust crate. PES is not used as an internal transport between them. The Rust core emits the domain plan; machine codecs remain downstream in the TypeScript engine.
+So parity is perceptual rather than stitch-for-stitch. A pinned Ink/Stitch 3.2.2 provider generated files for a fixed SVG corpus. Provider and Rust plans were parsed into the same model and rendered in the same physical viewport. The comparison checked the resulting silhouette, spacing, coverage, and visible travel, while retaining provider, candidate, and diff images for review.
 
-That last decision removed a ridiculous round trip from the original design. The old pipeline digitized SVG into PES, persisted the provider file, read PES back through the engine, converted it into a Stitch Block, and rendered a preview. PES was being used as an internal message format merely because the external tool already produced it. Once I owned both sides of the new boundary, keeping that detour would have confused a delivery format with a domain interface.
+Some differences remained as thin fringes or isolated points on rotated and curved shapes. I changed rules that improved the corpus and froze explicit visual acceptances for edge-only gaps I could not derive consistently. Those are product judgments, not mathematical equivalence.
 
-The plan envelope is versioned and bounded. Typed arrays cross workers as transferable buffers rather than nested object graphs. Request identities include enough information to reject stale work. The browser can replace pending work for one object without discarding another object's job, and a late result cannot overwrite a newer edit.
+An image cannot reveal malformed machine commands, byte equality cannot establish fill quality, and one pinned profile does not establish support for all of Ink/Stitch.
 
-This is where “runs in the browser” becomes an architectural property rather than a demo trick. Computation moves close to interaction. Authority, identity, and publication do not move with it.
+A preview has a harder physical limit. Thread, stabilizer, fabric, tension, needle, and machine can all change the result. Structural guardrails and perceptual comparisons cannot certify a sew-out. A physical sewn sample remains evidence the browser alone cannot manufacture. The exported file still has to meet the material world.
 
-# The remote digitizer that broke direct manipulation
-
-The first SVG architecture used Ink/Stitch 3.2.2 in a pinned Cloudflare Container. A Workflow canonicalized an upload, called the container, received PES, parsed it through the engine, and published immutable artifacts. D1 held durable attempt state; R2 held source and output artifacts.
-
-That design had real strengths. Ink/Stitch is a mature embroidery platform, the container isolated a large native application, and an asynchronous workflow made retries and durable status possible. It also preserved a sound rule: failure should not invalidate the last working design.
-
-But it was wrong for resize.
-
-Changing the physical size of an SVG changes its stitches. Stitch length, row placement, density, and routing cannot safely be handled by stretching the old preview forever. In the first design, committing a resize requested a new digitized variant and left the existing design in place until that request succeeded.
-
-The UI then had to poll durable state while the work crossed Workflow scheduling, container startup, Ink/Stitch execution, network transfer, object storage, PES parsing, preview generation, and publication. Further resizing and export were blocked while the attempt was pending. The code had generous timeouts because every component was individually defensible, but together they turned one canvas gesture into distributed job orchestration.
-
-The failure was not simply “the server is slow.” I had put an interactive operation behind the wrong ownership boundary.
-
-I could have tuned the container pool, polled faster, or streamed status. Those changes might reduce waiting while preserving the central mistake. Resize would still mean asking a remote system to manufacture the next frame of understanding.
-
-The replacement separated presentation from publication.
-
-During direct manipulation, the editor transforms the last valid geometry immediately. A committed semantic size change starts keyed WASM work off the main thread. The browser can publish optimistic geometry when that work completes. The edge then recomputes the same candidate before the artifact becomes authoritative. If digitization fails, the last valid design survives and the failure is attached to the new attempt instead of corrupting the document.
-
-Once that path existed, the runtime Ink/Stitch container, workflow stages, hidden provider PES artifact, and polling dependency could be retired. This was not “move Python to Rust” for fashion. It was a correction to the product boundary: direct manipulation needs local computation; durable outputs need trusted recomputation.
-
-# What is mine, and what is not
-
-The ownership story has two distinct lineages, and collapsing them would be misleading.
-
-Stitchly's TypeScript machine-file engine is a hand port of the relevant pattern model and PES/PEC, DST, and JEF codec behavior from [pystitch v1.0.1](https://github.com/inkstitch/pystitch/tree/v1.0.1). Pystitch is MIT-licensed. The repository keeps its license and a third-party notice, pins the Python package in the codec oracle, and limits the port to the three formats Stitchly supports.
-
-Pystitch itself is an updated fork in the pyembroidery lineage and is used by Ink/Stitch. It is a pattern model, normalizer, and codec library. It is not the algorithm that turns arbitrary SVG fills into embroidery. I wrote the TypeScript port and Stitchly's surrounding engine architecture; I did not invent or acquire ownership of pystitch's codec behavior.
-
-The Rust digitizer has a different boundary. [Ink/Stitch](https://inkstitch.org/) is GPL-3.0-or-later and served as the pinned behavioral provider for the runtime SVG profile and parity corpus. Its outputs and observed behavior helped define what Stitchly needed to reproduce. The project records the Rust crate as independent work under a clean-room rule: study published algorithms and externally observable behavior, keep provenance, and do not copy GPL source text or structure into the differently licensed product.
-
-Even the underlying ideas are not mine. Row-based fill is a geometry and graph problem with prior implementations and published research behind it. The Rust core uses third-party permissively licensed crates for SVG normalization, curves, polygon overlay, graph operations, and spatial indexing. My work was integrating those ingredients into Stitchly's narrow contract, making the result deterministic and bounded, and owning the product decisions around it.
-
-The repository itself is unlicensed proprietary code. I do not call the Rust digitizer “MIT” merely because some of its dependencies are permissive. The accurate claim is narrower: pystitch's MIT-derived notices are preserved for the codec port; Ink/Stitch remains a GPL third-party reference/provider, not code claimed as mine; and the Rust dependency stack was selected and recorded explicitly.
-
-# A fill is a graph before it is a file
-
-For supported solid SVG fills, the Rust pipeline applies transforms, flattens curves, and turns paths into valid polygonal regions under the SVG fill rule. It intersects those regions with globally aligned parallel rows. The intersections become required sewing edges.
-
-Those rows alone are disconnected. Their endpoints are projected onto region boundaries, boundary segments become connector edges, and alternating connector edges are duplicated so the graph can be traversed as an Eulerian walk. The traversal prefers fill rows. Longer hidden travel can route through an interior graph instead of tracing a visible boundary.
-
-The resulting row segments are subdivided into stitches with stable phase rules. Underlay is another pass through the fill machinery before the top layer. Small regions that cannot hold a fill row fall back to a running boundary instead of silently disappearing. Strokes can become running stitch or the supported simple zigzag profile.
-
-Assembly then turns geometry into explicit events: stitches, jumps, thread changes, stops, trims, and end. It preserves source order instead of globally sorting everything by color. Format-specific movement segmentation remains the codec's job because DST, JEF, and PES have different encoding limits.
-
-The point of spelling this out is not to claim a novel fill algorithm. It is to show why `svg → pes` is a terrible module boundary. Normalization, topology, routing, stitch synthesis, assembly, validation, and encoding fail in different ways. Keeping them visible let me test each invariant and replace the external provider without forcing the editor to understand machine-file bytes.
-
-The current runtime scope is intentionally narrower than all of Ink/Stitch. It handles the SVG surface Stitchly chose to support for runtime uploads, including transformed geometry, fills, running strokes, simple zigzag strokes, clipping, ordering, and the assembly controls needed by that profile. It does not claim general Ink/Stitch parity. True satin and contour fill are not implemented by the current Rust modules, and unsupported paint or text cases receive typed rejection rather than being quietly dropped.
-
-# Exact parity was the wrong finish line
-
-My first instinct for replacement verification was understandable: compare the Rust output with Ink/Stitch and keep fixing coordinates until they match.
-
-That works for codecs. If pystitch writes a deterministic PES fixture, Stitchly's PES writer can compare bytes and report the first differing offset. DST, JEF, PES v1, and PES v6 goldens give the machine-file layer a sharp oracle.
-
-It does not work as the only standard for digitization.
-
-Ink/Stitch's geometry stack and Stitchly's Rust geometry stack do not make every boundary and rounding decision identically. Two stitch paths can differ at isolated outer-row endpoints while producing the same interior coverage and topology. Forcing exact coordinate equality would reward imitation of incidental implementation details, including quirks I did not necessarily want to preserve.
-
-The opposite response—look at a few thumbnails and declare them close enough—would be worse.
-
-So the digitizer got a separate perceptual oracle. A pinned Ink/Stitch 3.2.2 provider generated PES for a fixed SVG corpus. Both provider and Rust candidate plans were parsed into the same model and rendered by the same deterministic software renderer into a shared physical viewport. The harness checked topology, travel, stitch constraints, silhouette, spacing, and image coverage. It retained provider/candidate/diff triples for human review.
-
-That process exposed a second design failure: a single numeric gate can turn a visually irrelevant boundary fringe into endless speculative tuning.
-
-Several fixtures had matching interiors but a thin periodic difference along an outer fill row. A cluster of rotated or curved shapes carried its worst difference in isolated boundary points. I ran bounded diagnosis rounds, improved cases where a rule could be supported across the corpus, and rejected changes that fixed one fixture by regressing others.
-
-Eventually the remaining row-phase selection rule could not be derived consistently from the provider corpus. Guessing another heuristic would have made the implementation less principled. I recorded explicit per-fixture visual acceptance for the remaining boundary-only gaps, froze those goldens, and kept the original gates unchanged. Future changes may improve the accepted gaps, but they may not silently worsen them.
-
-That is not a claim of mathematical or stitch-for-stitch equivalence. It is a documented product ruling backed by a pinned provider, deterministic artifacts, structural metrics, visual review, and failed experiments. The redesign was learning where automation should stop pretending to be judgment.
-
-# Verification is layered because failures are layered
-
-The engine has two different oracle strategies because it has two different kinds of correctness.
-
-For codecs, the pinned pystitch corpus generates deterministic machine files. Stitchly's writers compare bytes. Reader tests cover signatures, command decoding, thread metadata, movement segmentation, and format bounds. These tests verify compatibility with the attributed reference; they do not prove every embroidery machine accepts every possible file.
-
-For digitization, native Rust tests cover region extraction, running stitch, tatami construction, graph routing, assembly, validation, and determinism. WASM tests verify that browser bindings produce the same result as the native core. Edge tests do the same for the trusted adapter. The provider corpus tests candidate behavior against pinned Ink/Stitch artifacts, while the documented-gap file makes accepted residuals visible rather than burying them in tolerances.
-
-At the product boundary, tests verify stale-result rejection, request supersession, browser candidate validation, trusted recomputation, and artifact publication. A candidate must carry the full identity of what produced it. The final export still recompiles from the authoritative document and artifacts, then passes through guardrails and the selected codec.
-
-No one test establishes that the whole system is safe. Byte equality says nothing about fill quality. A perceptual image says nothing about a malformed machine command. Browser/edge parity says nothing about whether the source was authorized. The architecture stays reliable by refusing to substitute one kind of evidence for another.
-
-# The limits are part of the engine
-
-Stitchly is not a general-purpose embroidery CAD replacement.
-
-Imported machine files are opaque designs, not reconstructed vector objects. The runtime digitizer does not implement every SVG paint server, host-dependent font behavior, true satin column, contour fill, or every Ink/Stitch control. The editor does not expose fabric, density, underlay, and stitch-type knobs for arbitrary tuning. Supporting those honestly would require a larger domain and a larger verification corpus, not a few extra form fields.
-
-The preview is still a model. It cannot tell a reader how a specific combination of thread, stabilizer, fabric, tension, needle, and machine will sew. Guardrails can diagnose bounded structural risks; they cannot certify a physical result.
-
-The browser path also depends on WebAssembly capabilities. Unsupported runtimes should receive a typed diagnostic, not a mysterious spinner or a scalar fallback I do not test. Computation is kept off the active pointer path, but large or hostile inputs still need structural, memory, command-count, and watchdog limits.
-
-Most importantly, perceptual parity with one pinned provider profile is not ownership of that provider and not proof of universal embroidery quality. It is a regression contract for a defined runtime surface.
-
-Those constraints make the engine legible. The redesign separated responsiveness from authority: the browser computes an immediate candidate, the edge recomputes before publication, the document remains editable, and lineage and accepted parity gaps remain explicit.
+The engine became trustworthy when I stopped asking the browser to be trusted. It can do the hard work immediately. It just does not get the final word.

@@ -85,7 +85,7 @@
 		<time datetime={data.post.date}>{data.post.displayDate}</time>
 		{#if data.post.updated !== data.post.date}
 			<span aria-hidden="true">·</span>
-			<span>Updated <time datetime={data.post.updated}>{data.post.updated}</time></span>
+			<span>Updated <time datetime={data.post.updated}>{data.post.displayUpdated}</time></span>
 		{/if}
 	</div>
 	{#if data.post.banner}
